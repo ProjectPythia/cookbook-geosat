@@ -31,7 +31,8 @@ of the three geostationary satellites that can be accessed freely from AWS bucke
 
 ## Authors
 
-[jhbravo](jhbravo), [Second Author](@second-author), etc. _Acknowledge primary content authors here_
+[Jorge Bravo](https://github.com/jhbravo), [Srihari (Hari) Sundar](https://github.com/sriharisundar), [Brian Mapes](https://github.com/jhbravo), [Suman Shekhar](https://github.com/Sumanshekhar17), [Tri Nguyen](https://github.com/tringuyen180303), [Deborah Khider](https://github.com/jhbravo)
+
 
 ### Contributors
 
