@@ -33,7 +33,7 @@ of the three geostationary satellites that can be accessed freely from AWS bucke
 | [Brian Mapes](https://github.com/brianmapes)              | Affiliation University of Miami |
 | [Suman Shekhar](https://github.com/Sumanshekhar17)        | Rutgers University, The state university of New Jersey |
 | [Tri Nguyen](https://github.com/tringuyen180303)          | Indiana University Bloomington |
-| [Deborah Khider](https://github.com/khider)               | ----------- |
+| [Deborah Khider](https://github.com/khider)               | University of Southern California |
 
 ### Contributors
 
