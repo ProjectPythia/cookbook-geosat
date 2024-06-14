@@ -25,14 +25,15 @@ Global weather, climate, and environmental phenomena monitoring is greatly aided
 A Python library called Satpy was created specifically for handling data from satellite instruments that observe the Earth. Remote-sensing data can be read, modified, and written with it. Geophysical parameters can be converted from various file formats into Xarray DataArray and Dataset classes, which allow for easy integration with other scientific Python libraries. Satpy combines data from various instrument bands or products to make it easier to create RGB images and composite types. In order to enhance the quality and usefulness of images, it has features for atmospheric corrections and visual improvements. Several formats, including PNG, GeoTIFF, and CF standard NetCDF files, are available for saving output data. Users can resample data to geographic projected grids (areas) using Satpy as well.Although there are already guides and tutorials available for using Satpy, there isn't much thorough advice that is tailored specifically to the analysis 
 of the three geostationary satellites that can be accessed freely from AWS buckets <a href="https://registry.opendata.aws/noaa-goes/">AWS_GOES-R</a>, <a href="https://registry.opendata.aws/noaa-himawari/">AWS_HIMAWARI</a>, and <a href="https://registry.opendata.aws/noaa-gk2a-pds/">AWS_GK2A</a>. Users can gain access to structured tutorials, detailed instructions, and sample workflows that are specifically designed to meet the needs and distinctive features of these satellites by creating a cookbook specifically for them.</p> 
 
-
-
-
-
 ## Authors
-
-[Jorge Bravo](https://github.com/jhbravo), [Srihari (Hari) Sundar](https://github.com/sriharisundar), [Brian Mapes](https://github.com/jhbravo), [Suman Shekhar](https://github.com/Sumanshekhar17), [Tri Nguyen](https://github.com/tringuyen180303), [Deborah Khider](https://github.com/jhbravo)
-
+| Name      | Affiliation |
+| ----------- | ----------- |
+| [Jorge Bravo](https://github.com/jhbravo)                 | Stevens Institute of Technology |      |
+| [Srihari (Hari) Sundar](https://github.com/sriharisundar) | National Renewable Energy Lab  |
+| [Brian Mapes](https://github.com/brianmapes)              | Affiliation University of Miami |
+| [Suman Shekhar](https://github.com/Sumanshekhar17)        | Rutgers University, The state university of New Jersey |
+| [Tri Nguyen](https://github.com/tringuyen180303)          | Indiana University Bloomington |
+| [Deborah Khider](https://github.com/khider)               | ----------- |
 
 ### Contributors
 
