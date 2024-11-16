@@ -8,52 +8,55 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>(Replace_with_your_title) Cookbook &#8212; Project Pythia Cookbook Template</title>
+    <title>Geostationary satellite Cookbook &#8212; Project Pythia Cookbook Template</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-pythia-theme.min.css?v=e502140d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0efeab3" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -71,8 +74,6 @@
                 gtag('config', 'G-T52X8HNYE8');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -80,7 +81,8 @@
     <link rel="next" title="How to Cite This Cookbook" href="notebooks/how-to-cite.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="14 May 2024"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="16 November 2024"/>
   </head>
   
   
@@ -88,22 +90,24 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
 
   
   <div class="pst-scroll-pixel-helper"></div>
     <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
 
-   
+  
+     
+  
 
 <a class="navbar-brand logo" href="https://projectpythia.org">
   
@@ -117,7 +121,7 @@
     
     
     <img src="_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Project Pythia Cookbook Template - Home"/>
-    <script>document.write(`<img src="_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Project Pythia Cookbook Template - Home"/>`);</script>
+    <img src="_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Project Pythia Cookbook Template - Home"/>
   
   
 </a></div>
@@ -174,7 +178,7 @@
     <div class="navbar-header-items__end">
       
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -185,7 +189,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -197,7 +201,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -209,7 +213,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -221,9 +225,9 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
@@ -244,7 +248,9 @@
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
   
   <li class="nav-item">
     
@@ -283,6 +289,7 @@
   
   
 </ul></div>
+          
         
       </div>
     
@@ -290,7 +297,7 @@
     
       <div class="sidebar-header-items__end">
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -301,7 +308,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -313,7 +320,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -325,7 +332,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -343,7 +350,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -358,17 +364,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    (Replace_with_your_title) Cookbook
+                    Geostationary satellite Cookbook
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/how-to-cite.html">How to Cite This Cookbook</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/notebook-template.html">Project Pythia Notebook Template</a></li>
 </ul>
 
     </div>
@@ -398,37 +400,91 @@
 <div id="searchbox"></div>
                   <article class="bd-article">
                     
-  <a class="reference internal image-reference" href="_images/thumbnail.png"><img alt="thumbnail" src="_images/thumbnail.png" style="width: 300px;" /></a>
-<section class="tex2jax_ignore mathjax_ignore" id="replace-with-your-title-cookbook">
-<h1>(Replace_with_your_title) Cookbook<a class="headerlink" href="#replace-with-your-title-cookbook" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
-<p><a class="reference external" href="https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml/badge.svg" /></a>
-<a class="reference external" href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-template/main?labpath=notebooks"><img alt="Binder" src="https://binder.projectpythia.org/badge_logo.svg" /></a>
-<a class="reference external" href="https://zenodo.org/badge/latestdoi/475509405"><img alt="DOI" src="https://zenodo.org/badge/475509405.svg" /></a></p>
-<p>This Project Pythia Cookbook covers … (replace <code class="docutils literal notranslate"><span class="pre">...</span></code> with the main subject of your cookbook … e.g., <em>working with radar data in Python</em>)</p>
+  <img alt="pythia ncar" src="_images/ncar_pythia.png" />
+<section class="tex2jax_ignore mathjax_ignore" id="geostationary-satellite-cookbook">
+<h1>Geostationary satellite Cookbook<a class="headerlink" href="#geostationary-satellite-cookbook" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<p><a class="reference external" href="https://github.com/ProjectPythia/cookbook-geosat/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="https://github.com/ProjectPythia/cookbook-geosat/actions/workflows/nightly-build.yaml/badge.svg" /></a>
+<a class="reference external" href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-geosat/main?labpath=notebooks"><img alt="Binder" src="https://binder.projectpythia.org/badge_logo.svg" /></a>
+<a class="reference external" href="https://zenodo.org/badge/latestdoi/810398043"><img alt="DOI" src="https://zenodo.org/badge/810398043.svg" /></a></p>
+<p>This <strong>“Pythia Cookbook”</strong> was started during the <strong>Project Pythia June 11-14 2024 in Boulder, CO at the NCAR Mesa Lab</strong>. The <strong>“COOKBOOK GEOSAT”</strong> aims to provide a comprehensive guide for utilizing Satpy to analyze geostationary satellite data of the sensor Advanced Baseline Imager (<a class="reference external" href="https://www.goes-r.gov/spacesegment/abi.html">ABI</a>) on <a class="reference external" href="https://www.goes-r.gov">GOES-R</a> (west and east), sensor Advanced Himawari Imager (<a class="reference external" href="https://www.data.jma.go.jp/mscweb/en/himawari89/space_segment/spsg_ahi.html">AHI</a>) on <a class="reference external" href="https://www.jma.go.jp/jma/jma-eng/satellite/himawari89.html">HIMAWARI</a>, and sensor Advance Meteorological Imager (AMI) on <a class="reference external" href="https://nmsc.kma.go.kr/enhome/html/base/cmm/selectPage.do?page=satellite.gk2a.intro">Geo-KOMPSAT-2A</a> (GK2A). <a class="reference external" href="https://satpy.readthedocs.io/en/stable/">Satpy</a> is a powerful Python library specifically designed for processing and analyzing satellite data, offering capabilities for data visualization, manipulation, and analysis.</p>
+<img alt="pythia ncar" class="align-center" src="_images/all_sats.png" />
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<p>(Add a few sentences stating why this cookbook will be useful. What skills will you, “the chef”, gain once you have reached the end of the cookbook?)</p>
+<p>
+<img align="left" src="https://registry.opendata.aws/img/logos/noaa-logo.png" width="100" height="100" >   
+Public access to NOAA's geostationary satellite data, including GOES-16, GOES-17, and GOES-18, is made possible through the NOAA Open Data Dissemination <a href="https://www.noaa.gov/information-technology/open-data-dissemination">NODD</a> Program on commercial cloud platforms like Microsoft Azure, Amazon Web Services, and Google Cloud Platform. Amazon Web Services also hosts data from two other geostationary satellites HIMAWARI and Geo-KOMPSAT-2A. NODD's partnerships with top cloud providers enable near real-time access to to all these satellites, as well as long archives.</p>  
+<p>
+Global weather, climate, and environmental phenomena monitoring is greatly aided by geostationary satellites such as GOES-R, HIMAWARI, and GK2A. The need for thorough tools and resources to efficiently analyze and interpret satellite data is growing as the use of such data for scientific research, weather forecasting, and environmental monitoring grows. 
+</p>  
+<p>
+<img align="left" src="https://avatars.githubusercontent.com/u/13004956?s=200&v=4" width="100" height="100" >   
+A Python library called Satpy was created specifically for handling data from satellite instruments that observe the Earth. Remote-sensing data can be read, modified, and written with it. Geophysical parameters can be converted from various file formats into Xarray DataArray and Dataset classes, which allow for easy integration with other scientific Python libraries. Satpy combines data from various instrument bands or products to make it easier to create RGB images and composite types. In order to enhance the quality and usefulness of images, it has features for atmospheric corrections and visual improvements. Several formats, including PNG, GeoTIFF, and CF standard NetCDF files, are available for saving output data. Users can resample data to geographic projected grids (areas) using Satpy as well.Although there are already guides and tutorials available for using Satpy, there isn't much thorough advice that is tailored specifically to the analysis 
+of the three geostationary satellites that can be accessed freely from AWS buckets <a href="https://registry.opendata.aws/noaa-goes/">AWS_GOES-R</a>, <a href="https://registry.opendata.aws/noaa-himawari/">AWS_HIMAWARI</a>, and <a href="https://registry.opendata.aws/noaa-gk2a-pds/">AWS_GK2A</a>. Users can gain access to structured tutorials, detailed instructions, and sample workflows that are specifically designed to meet the needs and distinctive features of these satellites by creating a cookbook specifically for them.</p> 
 </section>
 <section id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<p><a class="reference internal" href="#&#64;first-author"><span class="xref myst">First Author</span></a>, <a class="reference internal" href="#&#64;second-author"><span class="xref myst">Second Author</span></a>, etc. <em>Acknowledge primary content authors here</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Affiliation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/jhbravo">Jorge Bravo</a></p></td>
+<td><p>Stevens Institute of Technology</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/sriharisundar">Srihari (Hari) Sundar</a></p></td>
+<td><p>National Renewable Energy Lab</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/brianmapes">Brian Mapes</a></p></td>
+<td><p>Affiliation University of Miami</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/Sumanshekhar17">Suman Shekhar</a></p></td>
+<td><p>Rutgers University, The state university of New Jersey</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/tringuyen180303">Tri Nguyen</a></p></td>
+<td><p>Indiana University Bloomington</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/khider">Deborah Khider</a></p></td>
+<td><p>University of Southern California</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <section id="contributors">
 <h3>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<a href="https://github.com/ProjectPythia/cookbook-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ProjectPythia/cookbook-template" />
+<a href="https://github.com/ProjectPythia/cookbook-geosat/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ProjectPythia/cookbook-geosat" />
 </a>
 </section>
 </section>
 <section id="structure">
 <h2>Structure<a class="headerlink" href="#structure" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<p>(State one or more sections that will comprise the notebook. E.g., <em>This cookbook is broken up into two main sections - “Foundations” and “Example Workflows.”</em> Then, describe each section below.)</p>
-<section id="section-1-replace-with-the-title-of-this-section-e-g-foundations">
-<h3>Section 1 ( Replace with the title of this section, e.g. “Foundations” )<a class="headerlink" href="#section-1-replace-with-the-title-of-this-section-e-g-foundations" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “The foundational content includes … “)</p>
+<p>This development cookbook serves as an example of how to gather, handle, and present various geostationary satellite data types.</p>
+<section id="foundations">
+<h3>Foundations<a class="headerlink" href="#foundations" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>The ABI on the GOES-R series, the AHI on the Himawari satellites, and the AMI on the Geo-KOMPSAT-2A satellites all provide multi-channel visibility through their respective 16 spectral bands.</p>
+<p>These sensors have several similarities in their spectral band configurations:</p>
+<ul class="simple">
+<li><p>All three instruments have bands covering the visible, near-infrared, and infrared portions of the electromagnetic spectrum.</p></li>
+<li><p>The central wavelengths of the spectral bands are comparable across the ABI, AHI, and AMI, enabling similar meteorological and environmental observations.</p></li>
+<li><p>The spatial resolutions of the bands also exhibit similarities, with the visible bands typically having finer spatial resolution</p></li>
+</ul>
 </section>
-<section id="section-2-replace-with-the-title-of-this-section-e-g-example-workflows">
-<h3>Section 2 ( Replace with the title of this section, e.g. “Example workflows” )<a class="headerlink" href="#section-2-replace-with-the-title-of-this-section-e-g-example-workflows" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “Example workflows include … “)</p>
+<section id="example-workflows">
+<h3>Example workflows<a class="headerlink" href="#example-workflows" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Several notebooks with the following structure can be found in the notebooks directory:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="notebooks/00_geosat_explaining_steps.html"><span class="std std-doc">00_geosat_explaining_steps.ipynb</span></a>:: provides a detailed explanation on how to download data and use Satpy to display it.</p></li>
+</ul>
+<p>Given that you have read the 00_geosat_explaining_steps.ipynb and have a basic understanding of how to use Satpy, the following notebooks are designed without providing an explanation of the various sensors on each satellite.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="notebooks/99_auxiliar_dowloading.html"><span class="std std-doc">99_auxiliar_dowloading.ipynb</span></a>: In order to run the subsequent notebooks, data must be downloaded from this notebook.</p></li>
+<li><p><a class="reference internal" href="notebooks/01_geosat_ABI_GOES_east.html"><span class="std std-doc">01_geosat_ABI_GOES_east.ipynb</span></a>: notebook to read ABI sensor data locally on GOES-east</p></li>
+<li><p><a class="reference internal" href="notebooks/02_geosat_ABI_GOES_west.html"><span class="std std-doc">02_geosat_ABI_GOES_west.ipynb</span></a>: notebook to read ABI sensor data locally on GOES-west</p></li>
+<li><p><a class="reference internal" href="notebooks/03_geosat_AHI_HIMAWARI.html"><span class="std std-doc">03_geosat_AHI_HIMAWARI.ipynb</span></a>: notebook to read AHI sensor data locally on HIMAWARI</p></li>
+<li><p><a class="reference internal" href="notebooks/04_geosat_AMI_GK2A.html"><span class="std std-doc">04_geosat_AMI_GK2A.ipynb</span></a>: notebook for reading AMI sensor data locally on GeoKomposat</p></li>
+</ul>
 </section>
 </section>
 <section id="running-the-notebooks">
@@ -447,28 +503,28 @@ on the rocket ship icon, (see figure below), and be sure to select
 notebook that you can interact with. I.e. you’ll be able to execute
 and even change the example programs. You’ll see that the code cells
 have no output at first, until you execute them by pressing
-<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Enter</kbd>. Complete details on how to interact with
+<kbd class="kbd docutils literal notranslate">Shift</kbd>/+<kbd class="kbd docutils literal notranslate">Enter</kbd>. Complete details on how to interact with
 a live Jupyter notebook are described in <a class="reference external" href="https://foundations.projectpythia.org/foundations/getting-started-jupyter.html">Getting Started with
 Jupyter</a>.</p>
 </section>
 <section id="running-on-your-own-machine">
 <h3>Running on Your Own Machine<a class="headerlink" href="#running-on-your-own-machine" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>If you are interested in running this material locally on your computer, you will need to follow this workflow:</p>
-<p>(Replace “cookbook-example” with the title of your cookbooks)</p>
+<p>(Replace “cookbook-geosat” with the title of your cookbooks)</p>
 <ol class="arabic">
-<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">https://github.com/ProjectPythia/cookbook-example</span></code> repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ProjectPythia/cookbook-example.git
+<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">https://github.com/ProjectPythia/cookbook-geosat</span></code> repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ProjectPythia/cookbook-geosat.git
 </pre></div>
 </div>
 </li>
-<li><p>Move into the <code class="docutils literal notranslate"><span class="pre">cookbook-example</span></code> directory</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>cookbook-example
+<li><p>Move into the <code class="docutils literal notranslate"><span class="pre">cookbook-geosat</span></code> directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>cookbook-geosat
 </pre></div>
 </div>
 </li>
 <li><p>Create and activate your conda environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
-conda<span class="w"> </span>activate<span class="w"> </span>cookbook-example
+conda<span class="w"> </span>activate<span class="w"> </span>cookbook-geosat
 </pre></div>
 </div>
 </li>
@@ -549,8 +605,8 @@ jupyter<span class="w"> </span>lab
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#section-1-replace-with-the-title-of-this-section-e-g-foundations">Section 1 ( Replace with the title of this section, e.g. “Foundations” )</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#section-2-replace-with-the-title-of-this-section-e-g-example-workflows">Section 2 ( Replace with the title of this section, e.g. “Example workflows” )</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflows">Example workflows</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-notebooks">Running the Notebooks</a><ul class="nav section-nav flex-column">
@@ -572,9 +628,9 @@ jupyter<span class="w"> </span>lab
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -597,7 +653,7 @@ jupyter<span class="w"> </span>lab
       
       
       
-      <li><a href="https://github.com/ProjectPythia/cookbook-template" target="_blank"
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -614,7 +670,7 @@ jupyter<span class="w"> </span>lab
       
       
       
-      <li><a href="https://github.com/ProjectPythia/cookbook-template/edit/main/README.md" target="_blank"
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/edit/main/README.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -631,7 +687,7 @@ jupyter<span class="w"> </span>lab
       
       
       
-      <li><a href="https://github.com/ProjectPythia/cookbook-template/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -714,27 +770,19 @@ jupyter<span class="w"> </span>lab
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -769,7 +817,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 14 May 2024.
+  Last updated on 16 November 2024.
   <br/>
 </p>
   </div>
@@ -786,8 +834,8 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
   </div>
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
      
@@ -803,13 +851,13 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
     <div class="container-xl">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="NCAR" src="_images/NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
+          <img alt="NCAR" src="_images\NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="Unidata" src="_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+          <img alt="Unidata" src="_images\Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="UAlbany" src="_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+          <img alt="UAlbany" src="_images\UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
         </div>
       </div>
     </div>
@@ -823,7 +871,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 14 May 2024.
+          Last updated on 16 November 2024.
         </p>
       </div>
     </div>

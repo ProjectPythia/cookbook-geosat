@@ -1,0 +1,1523 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>This notebook contains example cells to download data. &#8212; Project Pythia Cookbook Template</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d0efeab3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/99_auxiliar_dowloading';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="16 November 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Project Pythia Cookbook Template - Home"/>
+    <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Project Pythia Cookbook Template - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+          
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Geostationary satellite Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how-to-cite.html">How to Cite This Cookbook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+        </div>
+
+        
+        <main id="main-content" class="bd-main" role="main">
+          
+
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
+                
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
+  <img alt="pythia ncar" src="../_images/ncar_pythia.png" />
+<p><strong>This notebook is developed during the pythia cook-off at NCAR Mesa-Lab Boulder Colorado, June 12-14, 2024</strong></p>
+<p>Participants in the workshop event have the chance to practice collaborative problem-solving and hands-on learning in the field of Python programming.</p>
+<p>This notebook is part of the <strong>Breakout Topic: Geostationary on AWS</strong>, lead by <strong>Jorge Humberto Bravo Mendez</strong> jbravo2&#64;stevens.edu, from Stevens Institute of Technology</p>
+<hr class="docutils" />
+<section id="this-notebook-contains-example-cells-to-download-data">
+<h1>This notebook contains example cells to download data.<a class="headerlink" href="#this-notebook-contains-example-cells-to-download-data" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<section id="uses-hard-wired-lists-of-urls-for-an-example-date-time-not-easily-adjusted-full-disk-files-are-large-executing-this-notebook-is-not-necessary-for-the-other-notebooks">
+<h2>Uses hard-wired lists of URLs for an example date/time, not easily adjusted. Full disk files are large. Executing this notebook is not necessary for the other notebooks.<a class="headerlink" href="#uses-hard-wired-lists-of-urls-for-an-example-date-time-not-easily-adjusted-full-disk-files-are-large-executing-this-notebook-is-not-necessary-for-the-other-notebooks" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+</section>
+</section>
+<section id="to-access-real-time-data-without-downloading-see-the-aws-access-cookbook">
+<h1>To access Real-Time data without downloading, see the AWS_access_cookbook.<a class="headerlink" href="#to-access-real-time-data-without-downloading-see-the-aws-access-cookbook" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<p>That cookbook could be adapted for archival data access of specified dates and times.</p>
+<p>Another useful resource is https://satpy.readthedocs.io/en/latest/remote_reading.html</p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">download_data</span><span class="p">(</span><span class="n">local_directory</span><span class="p">):</span>
+    <span class="c1"># Ensure that the local directory exists; create it if it doesn&#39;t.</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Iterate through the URLs and download files.</span>
+    <span class="k">for</span> <span class="n">urld</span> <span class="ow">in</span> <span class="n">urls2dwn</span><span class="p">:</span>
+        <span class="c1"># Extract the filename from the URL.</span>
+        <span class="n">ntw</span> <span class="o">=</span> <span class="n">urld</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Construct the complete path to save the file in the local directory.</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">local_directory</span><span class="p">,</span> <span class="n">ntw</span><span class="p">)</span>
+
+        <span class="c1"># Send an HTTP GET request to the URL.</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urld</span><span class="p">)</span>
+
+        <span class="c1"># Check if the response is successful (status code 200).</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="c1"># Write the content to the file in binary mode.</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">ntw</span><span class="si">}</span><span class="s2">&#39; downloaded and saved to &#39;</span><span class="si">{</span><span class="n">local_directory</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download &#39;</span><span class="si">{</span><span class="n">ntw</span><span class="si">}</span><span class="s2">&#39; from the URL: </span><span class="si">{</span><span class="n">urld</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="goes-east">
+<h1>GOES east<a class="headerlink" href="#goes-east" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span> 
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C01_G16_s20232561536173_e20232561538548_c20232561538585.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C02_G16_s20232561536173_e20232561538546_c20232561538578.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C03_G16_s20232561536173_e20232561538546_c20232561538589.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C04_G16_s20232561536173_e20232561538546_c20232561539001.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C05_G16_s20232561536173_e20232561538546_c20232561539016.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C06_G16_s20232561536173_e20232561538551_c20232561539011.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C07_G16_s20232561536173_e20232561538557_c20232561539026.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C08_G16_s20232561536173_e20232561538546_c20232561538598.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C09_G16_s20232561536173_e20232561538551_c20232561538580.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C10_G16_s20232561536173_e20232561538557_c20232561539020.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C11_G16_s20232561536173_e20232561538546_c20232561539034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C12_G16_s20232561536173_e20232561538552_c20232561539031.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C13_G16_s20232561536173_e20232561538557_c20232561539004.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C14_G16_s20232561536173_e20232561538546_c20232561538592.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C15_G16_s20232561536173_e20232561538551_c20232561539007.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2023/256/15/OR_ABI-L1b-RadC-M6C16_G16_s20232561536173_e20232561538557_c20232561539036.nc&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">goes_east_dir</span> <span class="o">=</span> <span class="s2">&quot;input/G16_ABI-L1b-RadC&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">goes_east_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C01_G16_s20232561536173_e20232561538548_c20232561538585.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C02_G16_s20232561536173_e20232561538546_c20232561538578.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C03_G16_s20232561536173_e20232561538546_c20232561538589.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C04_G16_s20232561536173_e20232561538546_c20232561539001.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C05_G16_s20232561536173_e20232561538546_c20232561539016.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C06_G16_s20232561536173_e20232561538551_c20232561539011.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C07_G16_s20232561536173_e20232561538557_c20232561539026.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C08_G16_s20232561536173_e20232561538546_c20232561538598.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C09_G16_s20232561536173_e20232561538551_c20232561538580.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C10_G16_s20232561536173_e20232561538557_c20232561539020.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C11_G16_s20232561536173_e20232561538546_c20232561539034.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C12_G16_s20232561536173_e20232561538552_c20232561539031.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C13_G16_s20232561536173_e20232561538557_c20232561539004.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C14_G16_s20232561536173_e20232561538546_c20232561538592.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C15_G16_s20232561536173_e20232561538551_c20232561539007.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C16_G16_s20232561536173_e20232561538557_c20232561539036.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="goes-west">
+<h1>GOES west<a class="headerlink" href="#goes-west" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span> 
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C01_G18_s20230041816176_e20230041818551_c20230041818587.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C02_G18_s20230041816176_e20230041818549_c20230041818582.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C03_G18_s20230041816176_e20230041818550_c20230041818584.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C04_G18_s20230041816176_e20230041818549_c20230041818580.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C05_G18_s20230041816176_e20230041818550_c20230041819005.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C06_G18_s20230041816176_e20230041818555_c20230041819032.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C07_G18_s20230041816176_e20230041818562_c20230041818592.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C08_G18_s20230041816176_e20230041818549_c20230041818599.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C09_G18_s20230041816176_e20230041818555_c20230041819014.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C10_G18_s20230041816176_e20230041818563_c20230041819021.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C11_G18_s20230041816176_e20230041818549_c20230041818594.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C12_G18_s20230041816176_e20230041818555_c20230041819009.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C13_G18_s20230041816176_e20230041818561_c20230041819034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C14_G18_s20230041816176_e20230041818549_c20230041819017.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C15_G18_s20230041816176_e20230041818555_c20230041819030.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes18.s3.amazonaws.com/ABI-L1b-RadC/2023/004/18/OR_ABI-L1b-RadC-M6C16_G18_s20230041816176_e20230041818561_c20230041819025.nc&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">goes_west_dir</span> <span class="o">=</span> <span class="s2">&quot;input/G18_ABI-L1b-RadC&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">goes_west_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C01_G18_s20230041816176_e20230041818551_c20230041818587.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C02_G18_s20230041816176_e20230041818549_c20230041818582.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C03_G18_s20230041816176_e20230041818550_c20230041818584.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C04_G18_s20230041816176_e20230041818549_c20230041818580.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C05_G18_s20230041816176_e20230041818550_c20230041819005.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C06_G18_s20230041816176_e20230041818555_c20230041819032.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C07_G18_s20230041816176_e20230041818562_c20230041818592.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C08_G18_s20230041816176_e20230041818549_c20230041818599.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C09_G18_s20230041816176_e20230041818555_c20230041819014.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C10_G18_s20230041816176_e20230041818563_c20230041819021.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C11_G18_s20230041816176_e20230041818549_c20230041818594.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C12_G18_s20230041816176_e20230041818555_c20230041819009.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C13_G18_s20230041816176_e20230041818561_c20230041819034.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C14_G18_s20230041816176_e20230041818549_c20230041819017.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadC-M6C15_G18_s20230041816176_e20230041818555_c20230041819030.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+File &#39;OR_ABI-L1b-RadC-M6C16_G18_s20230041816176_e20230041818561_c20230041819025.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadC&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="himawari">
+<h1>HIMAWARI<a class="headerlink" href="#himawari" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B01_JP02_R10_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B02_JP02_R10_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B03_JP02_R05_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B04_JP02_R10_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B05_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B06_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B07_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B08_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B09_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B10_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B11_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B12_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B13_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B14_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B15_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-Japan/2023/08/15/0430/HS_H09_20230815_0430_B16_JP02_R20_S0101.DAT.bz2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">himawari_dir</span> <span class="o">=</span> <span class="s2">&quot;input/HI9_AHI_L1b_JP&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">himawari_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B01_JP02_R10_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B02_JP02_R10_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B03_JP02_R05_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B04_JP02_R10_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B05_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B06_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B07_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B08_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B09_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B10_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B11_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B12_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B13_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B14_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B15_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+File &#39;HS_H09_20230815_0430_B16_JP02_R20_S0101.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_JP&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gk2a">
+<h1>GK2A<a class="headerlink" href="#gk2a" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir087_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir096_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir105_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir112_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir123_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_ir133_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_nr013_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_nr016_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_sw038_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_vi004_la010ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_vi005_la010ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_vi006_la005ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_vi008_la010ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_wv063_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_wv069_la020ge_202308090034.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/LA/202308/09/00/gk2a_ami_le1b_wv073_la020ge_202308090034.nc&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gk2a_dir</span> <span class="o">=</span> <span class="s2">&quot;input/GK2A_AMI_L1B_LA&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">gk2a_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir087_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_ir096_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir105_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_ir112_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir123_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_ir133_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr013_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_nr016_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_sw038_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_vi004_la010ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi005_la010ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi006_la005ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+File &#39;gk2a_ami_le1b_vi008_la010ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv063_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv069_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv073_la020ge_202308090034.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_LA&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="himawari-filldisk">
+<h1>HIMAWARI Filldisk<a class="headerlink" href="#himawari-filldisk" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B01_FLDK_R10_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B02_FLDK_R10_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B03_FLDK_R05_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B04_FLDK_R10_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B05_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B06_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B07_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B08_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B09_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B10_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B11_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B12_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B13_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B14_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B15_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-himawari9.s3.amazonaws.com/AHI-L1b-FLDK/2023/08/15/0430/HS_H09_20230815_0430_B16_FLDK_R20_S0810.DAT.bz2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">himawari_dir</span> <span class="o">=</span> <span class="s2">&quot;input/HI9_AHI_L1b_FLDK&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">himawari_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B01_FLDK_R10_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B02_FLDK_R10_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B03_FLDK_R05_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B04_FLDK_R10_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+File &#39;HS_H09_20230815_0430_B05_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B06_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B07_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+File &#39;HS_H09_20230815_0430_B08_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B09_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+File &#39;HS_H09_20230815_0430_B10_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B11_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B12_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B13_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B14_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;HS_H09_20230815_0430_B15_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+File &#39;HS_H09_20230815_0430_B16_FLDK_R20_S0810.DAT.bz2&#39; downloaded and saved to &#39;input/HI9_AHI_L1b_FLDK&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gk2a-fulldisk">
+<h1>GK2A Fulldisk<a class="headerlink" href="#gk2a-fulldisk" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir087_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir096_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir105_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir112_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir123_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_ir133_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_nr013_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_nr016_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_sw038_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_vi004_fd010ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_vi005_fd010ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_vi006_fd005ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_vi008_fd010ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_wv063_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_wv069_fd020ge_202308090010.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-gk2a-pds.s3.amazonaws.com/AMI/L1B/FD/202308/09/00/gk2a_ami_le1b_wv073_fd020ge_202308090010.nc&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gk2a_dir</span> <span class="o">=</span> <span class="s2">&quot;input/GK2A_AMI_L1B_FD&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">gk2a_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir087_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir096_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir105_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir112_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir123_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir133_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr013_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr016_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_sw038_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi004_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi005_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi006_fd005ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi008_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv063_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv069_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv073_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/GK2A_AMI_L1B_FD&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="goes16-fulldisk">
+<h1>GOES16 Fulldisk<a class="headerlink" href="#goes16-fulldisk" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C01_G16_s20232561550207_e20232561559515_c20232561559554.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C02_G16_s20232561550207_e20232561559515_c20232561559562.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C03_G16_s20232561550207_e20232561559515_c20232561559569.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C04_G16_s20232561550207_e20232561559515_c20232561559532.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C05_G16_s20232561550207_e20232561559515_c20232561559575.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C06_G16_s20232561550207_e20232561559521_c20232561559547.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C07_G16_s20232561550207_e20232561559527_c20232561559558.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C08_G16_s20232561550207_e20232561559515_c20232561559566.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C09_G16_s20232561550207_e20232561559521_c20232561559560.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C10_G16_s20232561550207_e20232561559527_c20232561559563.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C11_G16_s20232561550207_e20232561559515_c20232561559566.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C12_G16_s20232561550207_e20232561559521_c20232561559548.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C13_G16_s20232561550207_e20232561559527_c20232561559577.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C14_G16_s20232561550207_e20232561559515_c20232561559571.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C15_G16_s20232561550207_e20232561559521_c20232561559583.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C16_G16_s20232561550207_e20232561559529_c20232561559574.nc&#39;</span><span class="p">],</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C01_G16_s20232561550207_e20232561559515_c20232561559554.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C02_G16_s20232561550207_e20232561559515_c20232561559562.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C03_G16_s20232561550207_e20232561559515_c20232561559569.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C04_G16_s20232561550207_e20232561559515_c20232561559532.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C05_G16_s20232561550207_e20232561559515_c20232561559575.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C06_G16_s20232561550207_e20232561559521_c20232561559547.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C07_G16_s20232561550207_e20232561559527_c20232561559558.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C08_G16_s20232561550207_e20232561559515_c20232561559566.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C09_G16_s20232561550207_e20232561559521_c20232561559560.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C10_G16_s20232561550207_e20232561559527_c20232561559563.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C11_G16_s20232561550207_e20232561559515_c20232561559566.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C12_G16_s20232561550207_e20232561559521_c20232561559548.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C13_G16_s20232561550207_e20232561559527_c20232561559577.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C14_G16_s20232561550207_e20232561559515_c20232561559571.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C15_G16_s20232561550207_e20232561559521_c20232561559583.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/256/15/OR_ABI-L1b-RadF-M6C16_G16_s20232561550207_e20232561559529_c20232561559574.nc&#39;],)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">goes_east_dir</span> <span class="o">=</span> <span class="s2">&quot;input/G16_ABI-L1b-RadF&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">goes_east_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir087_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir096_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir105_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir112_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir123_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir133_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr013_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr016_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_sw038_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi004_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi005_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi006_fd005ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi008_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv063_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv069_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv073_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G16_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="goes18-fulldisk">
+<h1>GOES18 Fulldisk<a class="headerlink" href="#goes18-fulldisk" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C01_G18_s20230041850211_e20230041859519_c20230041859566.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C02_G18_s20230041850211_e20230041859519_c20230041859541.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C03_G18_s20230041850211_e20230041859519_c20230041859561.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C04_G18_s20230041850211_e20230041859519_c20230041859556.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C05_G18_s20230041850211_e20230041859519_c20230041859568.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C06_G18_s20230041850211_e20230041859525_c20230041859553.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C07_G18_s20230041850211_e20230041859533_c20230041859574.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C08_G18_s20230041850211_e20230041859519_c20230041859572.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C09_G18_s20230041850211_e20230041859524_c20230041859575.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C10_G18_s20230041850211_e20230041859530_c20230041859558.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C11_G18_s20230041850211_e20230041859519_c20230041859580.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C12_G18_s20230041850211_e20230041859524_c20230041859570.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C13_G18_s20230041850211_e20230041859533_c20230041859568.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C14_G18_s20230041850211_e20230041859519_c20230041859583.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C15_G18_s20230041850211_e20230041859525_c20230041859578.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C16_G18_s20230041850211_e20230041859531_c20230041859564.nc&#39;</span><span class="p">],</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C01_G18_s20230041850211_e20230041859519_c20230041859566.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C02_G18_s20230041850211_e20230041859519_c20230041859541.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C03_G18_s20230041850211_e20230041859519_c20230041859561.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C04_G18_s20230041850211_e20230041859519_c20230041859556.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C05_G18_s20230041850211_e20230041859519_c20230041859568.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C06_G18_s20230041850211_e20230041859525_c20230041859553.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C07_G18_s20230041850211_e20230041859533_c20230041859574.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C08_G18_s20230041850211_e20230041859519_c20230041859572.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C09_G18_s20230041850211_e20230041859524_c20230041859575.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C10_G18_s20230041850211_e20230041859530_c20230041859558.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C11_G18_s20230041850211_e20230041859519_c20230041859580.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C12_G18_s20230041850211_e20230041859524_c20230041859570.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C13_G18_s20230041850211_e20230041859533_c20230041859568.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C14_G18_s20230041850211_e20230041859519_c20230041859583.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C15_G18_s20230041850211_e20230041859525_c20230041859578.nc&#39;,
+  &#39;ABI-L1b-RadF/2023/004/18/OR_ABI-L1b-RadF-M6C16_G18_s20230041850211_e20230041859531_c20230041859564.nc&#39;],)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">goes_west_dir</span> <span class="o">=</span> <span class="s2">&quot;input/G18_ABI-L1b-RadF&quot;</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">goes_west_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir087_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir096_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir105_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir112_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir123_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_ir133_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr013_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_nr016_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_sw038_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi004_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi005_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi006_fd005ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_vi008_fd010ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv063_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv069_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;gk2a_ami_le1b_wv073_fd020ge_202308090010.nc&#39; downloaded and saved to &#39;input/G18_ABI-L1b-RadF&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+</div>
+                  </footer>
+                
+              </div>
+
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">This notebook contains example cells to download data.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-hard-wired-lists-of-urls-for-an-example-date-time-not-easily-adjusted-full-disk-files-are-large-executing-this-notebook-is-not-necessary-for-the-other-notebooks">Uses hard-wired lists of URLs for an example date/time, not easily adjusted. Full disk files are large. Executing this notebook is not necessary for the other notebooks.</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#to-access-real-time-data-without-downloading-see-the-aws-access-cookbook">To access Real-Time data without downloading, see the AWS_access_cookbook.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#goes-east">GOES east</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#goes-west">GOES west</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#himawari">HIMAWARI</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gk2a">GK2A</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#himawari-filldisk">HIMAWARI Filldisk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gk2a-fulldisk">GK2A Fulldisk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#goes16-fulldisk">GOES16 Fulldisk</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#goes18-fulldisk">GOES18 Fulldisk</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-geosat/main?urlpath=lab/tree/notebooks/99_auxiliar_dowloading.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/edit/main/notebooks/99_auxiliar_dowloading.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/issues/new?title=Issue%20on%20page%20%2Fnotebooks/99_auxiliar_dowloading.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/99_auxiliar_dowloading.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the <a href="https://projectpythia.org/">Project Pythia</a> Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 16 November 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
+  <div class="container-fluid footer-logos">
+    <div class="container-xl">
+      <div class="row d-flex flex-wrap align-items-center">
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="NCAR" src="../_images\NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="Unidata" src="../_images\Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../_images\UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
+    <div class="container-xl">
+      <div class="d-flex justify-content-center">
+        <p class="py-1 m-0">
+            &copy;&nbsp;2024.
+        
+          By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
+        
+          Last updated on 16 November 2024.
+        </p>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item"><div class="container-fluid footer-extra">
+  <div class="container">
+    <center>
+      Theme by <a href="https://projectpythia.org">Project Pythia</a>. All code
+      in Pythia Cookbooks is licensed under
+      <a href="https://opensource.org/license/apache-2-0">Apache 2.0</a>. All
+      other non-code content is licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/">
+        Creative Commons BY 4.0 (CC BY 4.0)</a
+      >.
+    </center>
+    <br /><br />
+    <div class="row">
+      <p class="m-0">
+        <img
+          src="../_static/footer-logo-nsf.png"
+          style="float: left; width: 60px; height: 60px; margin-right: 1rem"
+        />
+        This material is based upon work supported by the National Science
+        Foundation under Grant Nos. 2026863 and 2026899. Any opinions, findings,
+        and conclusions or recommendations expressed in this material are those
+        of the author(s) and do not necessarily reflect the views of the
+        National Science Foundation.
+      </p>
+    </div>
+  </div>
+</div></div>
+      
+      </div>
+    </div>
+  
+
+  </footer>
+  </body>
+</html>

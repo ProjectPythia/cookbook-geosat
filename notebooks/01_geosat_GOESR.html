@@ -1,0 +1,2759 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced Baseline Imager (ABI) data with Satpy &#8212; Project Pythia Cookbook Template</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d0efeab3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/01_geosat_GOESR';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="16 November 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Project Pythia Cookbook Template - Home"/>
+    <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Project Pythia Cookbook Template - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+          
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Geostationary satellite Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how-to-cite.html">How to Cite This Cookbook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+        </div>
+
+        
+        <main id="main-content" class="bd-main" role="main">
+          
+
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
+                
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
+  <p>Let’s start here! If you can directly link to an image relevant to your notebook, such as <a class="reference external" href="https://github.com/numpy/numpy/blob/main/doc/source/_static/numpylogo.svg">canonical logos</a>, do so here at the top of your notebook. You can do this with Markdown syntax,</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">![&lt;image</span> <span class="pre">title&gt;](http://link.com/to/image.png</span> <span class="pre">&quot;image</span> <span class="pre">alt</span> <span class="pre">text&quot;)</span></code></p>
+</div></blockquote>
+<p>or edit this cell to see raw HTML <code class="docutils literal notranslate"><span class="pre">img</span></code> demonstration. This is preferred if you need to shrink your embedded image. <strong>Either way be sure to include <code class="docutils literal notranslate"><span class="pre">alt</span></code> text for any embedded images to make your content more accessible.</strong></p>
+<p><a class="reference internal" href="../_images/ProjectPythia_Logo_Final-01-Blue.svg"><img alt="Project Pythia Logo" src="../_images/ProjectPythia_Logo_Final-01-Blue.svg" style="width: 250px;" /></a></img></p>
+<section class="tex2jax_ignore mathjax_ignore" id="advanced-baseline-imager-abi-data-with-satpy">
+<h1>Advanced Baseline Imager (ABI) data with Satpy<a class="headerlink" href="#advanced-baseline-imager-abi-data-with-satpy" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<p>Using Satpy to read and  Advanced Baseline Imager (ABI) data from GOES-R satellites. Here’s a step-by-step guide:</p>
+<hr class="docutils" />
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>It takes a methodical approach to efficiently access, evaluate, and visualize satellite imagery in order to create a Jupyter Notebook to read Advanced Baseline Imager (ABI) data with Satpy. The notebook starts by configuring the environment and importing the modules before gaining access to ABI data from AWS. A Satpy Scene object is initialized by using the Python library Satpy, which is designed for earth-observing satellite instruments. It specifies the ABI data file(s) and the relevant reader. The desired ABI channels or products are then loaded into the Scene object. Then, the loaded data is accessed and visualized using the built-in visualization tools of Matplotlib or Satpy. To ensure that the analysis is clear and repeatable, the notebook places a strong emphasis on comprehensive documentation and explanation. Users can learn more about the analysis of satellite imagery with this methodical approach, opening up a world of possibilities for everything from environmental research to weather monitoring.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="admonition alert alert-info">
+<p class="admonition-title">Info</p>
+<p>Some prerequisites to understanding Satpy effectively:</p>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Basic Python:</strong> Since Satpy is a Python library, knowledge of the Python programming language is required. It is essential to comprehend ideas such as variables, data types, loops, functions, and libraries/modules.</p></li>
+<li><p><strong>Knowledge of Satellite Data:</strong> Although not required, it can be helpful to have some knowledge of satellite data and its uses. This entails being familiar with satellite instruments, data formats, and the different kinds of data that satellites gather.</p></li>
+<li><p><strong>Concepts of Data Processing:</strong> It is beneficial to have a basic understanding of concepts related to reading, modifying, and visualizing data. Understanding these ideas will help in making the most of Satpy, as it offers features for reading, processing, and analyzing satellite data.</p></li>
+<li><p><strong>Python Libraries:</strong> It can be helpful to have some knowledge of other Python libraries that are frequently used in scientific computing, such as NumPy, Matplotlib, and Pandas. These libraries are frequently integrated with Satpy for tasks involving data manipulation and visualization.</p></li>
+</ol>
+<hr class="docutils" />
+<div class="admonition alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>Before starting, we must obtain data</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To stop extraneous warning messages from clogging the notebook output, </span>
+<span class="c1"># import the warnings module and set it to ignore all warnings.</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### List of files to download for testing</span>
+<span class="n">urls2dwn</span> <span class="o">=</span> <span class="p">[</span> 
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C01_G16_s20210992350171_e20210992359479_c20210992359525.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C02_G16_s20210992350171_e20210992359479_c20210992359522.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C03_G16_s20210992350171_e20210992359479_c20210992359530.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C04_G16_s20210992350171_e20210992359479_c20210992359514.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C05_G16_s20210992350171_e20210992359479_c20210992359533.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C06_G16_s20210992350171_e20210992359484_c20210992359528.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C07_G16_s20210992350171_e20210992359490_c20210992359539.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C08_G16_s20210992350171_e20210992359479_c20210992359535.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C09_G16_s20210992350171_e20210992359484_c20210992359551.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C10_G16_s20210992350171_e20210992359490_c20210992359536.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C11_G16_s20210992350171_e20210992359479_c20210992359545.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C12_G16_s20210992350171_e20210992359484_c20210992359539.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C13_G16_s20210992350171_e20210992359490_c20210992359555.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C14_G16_s20210992350171_e20210992359479_c20210992359547.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C15_G16_s20210992350171_e20210992359484_c20210992359557.nc&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadF/2021/099/23/OR_ABI-L1b-RadF-M6C16_G16_s20210992350171_e20210992359490_c20210992359542.nc&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Specify the local directory where you want to save the files.</span>
+<span class="c1"># local_directory = input(&quot;Enter the path to the download folder: &quot;)</span>
+<span class="n">local_directory</span> <span class="o">=</span> <span class="s2">&quot;Output_data/ABI-L1b-RadF/s20210992350171&quot;</span>
+<span class="c1"># Ensure that the local directory exists; create it if it doesn&#39;t.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Iterate through the URLs and download files.</span>
+<span class="k">for</span> <span class="n">urld</span> <span class="ow">in</span> <span class="n">urls2dwn</span><span class="p">:</span>
+    <span class="c1"># Extract the filename from the URL.</span>
+    <span class="n">ntw</span> <span class="o">=</span> <span class="n">urld</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># Construct the complete path to save the file in the local directory.</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">local_directory</span><span class="p">,</span> <span class="n">ntw</span><span class="p">)</span>
+    
+    <span class="c1"># Send an HTTP GET request to the URL.</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urld</span><span class="p">)</span>
+    
+    <span class="c1"># Check if the response is successful (status code 200).</span>
+    <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Write the content to the file in binary mode.</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">ntw</span><span class="si">}</span><span class="s2">&#39; downloaded and saved to &#39;</span><span class="si">{</span><span class="n">local_directory</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download &#39;</span><span class="si">{</span><span class="n">ntw</span><span class="si">}</span><span class="s2">&#39; from the URL: </span><span class="si">{</span><span class="n">urld</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C01_G16_s20210992350171_e20210992359479_c20210992359525.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C02_G16_s20210992350171_e20210992359479_c20210992359522.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C03_G16_s20210992350171_e20210992359479_c20210992359530.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C04_G16_s20210992350171_e20210992359479_c20210992359514.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C05_G16_s20210992350171_e20210992359479_c20210992359533.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C06_G16_s20210992350171_e20210992359484_c20210992359528.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C07_G16_s20210992350171_e20210992359490_c20210992359539.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C08_G16_s20210992350171_e20210992359479_c20210992359535.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C09_G16_s20210992350171_e20210992359484_c20210992359551.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C10_G16_s20210992350171_e20210992359490_c20210992359536.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C11_G16_s20210992350171_e20210992359479_c20210992359545.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C12_G16_s20210992350171_e20210992359484_c20210992359539.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C13_G16_s20210992350171_e20210992359490_c20210992359555.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C14_G16_s20210992350171_e20210992359479_c20210992359547.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C15_G16_s20210992350171_e20210992359484_c20210992359557.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;OR_ABI-L1b-RadF-M6C16_G16_s20210992350171_e20210992359490_c20210992359542.nc&#39; downloaded and saved to &#39;Output_data/ABI-L1b-RadF/s20210992350171&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scene is a representation of satellite data that enables functions such as data reading, </span>
+<span class="c1"># data resampling, data compositing, and data saving.</span>
+<span class="kn">from</span> <span class="nn">satpy.scene</span> <span class="kn">import</span> <span class="n">Scene</span>
+<span class="c1"># This line imports the debug_on function from the satpy.utils module, which is used to enable detailed </span>
+<span class="c1"># debug logging in Satpy. This can be helpful for troubleshooting and understanding the internal workings of Satpy processes.</span>
+<span class="kn">from</span> <span class="nn">satpy.utils</span> <span class="kn">import</span> <span class="n">debug_on</span>
+
+<span class="c1"># Importing datetime for date and time operations. Processing time-stamped satellite data </span>
+<span class="c1"># is necessary for accurate time-based operations and analysis.</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># Using glob allows for efficient and flexible file handling, especially when dealing with </span>
+<span class="c1"># large datasets typically generated by geostationary satellites.</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The magic command &#39;%matplotlib inline&#39; configures the Jupyter Notebook to display plots directly below the code cells.</span>
+<span class="c1"># This setting is essential for interactive data visualization, especially when plotting data from geostationary satellites.</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="starting-to-create-satpy-scenes">
+<h2>Starting to create satpy scenes<a class="headerlink" href="#starting-to-create-satpy-scenes" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="admonition alert alert-danger">
+<p class="admonition-title">Attention</p>
+<p>SatPy requires the original file names at all times!
+Therefore, don’t alter them when you save the data locally. SatPy won’t be able to open the files if this is the case.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sat_files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;Output_data/ABI-L1b-RadF/s20210992350171/*&quot;</span><span class="p">)</span>
+<span class="n">sat_files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C01_G16_s20210992350171_e20210992359479_c20210992359525.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C02_G16_s20210992350171_e20210992359479_c20210992359522.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C03_G16_s20210992350171_e20210992359479_c20210992359530.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C04_G16_s20210992350171_e20210992359479_c20210992359514.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C05_G16_s20210992350171_e20210992359479_c20210992359533.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C06_G16_s20210992350171_e20210992359484_c20210992359528.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C07_G16_s20210992350171_e20210992359490_c20210992359539.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C08_G16_s20210992350171_e20210992359479_c20210992359535.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C09_G16_s20210992350171_e20210992359484_c20210992359551.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C10_G16_s20210992350171_e20210992359490_c20210992359536.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C11_G16_s20210992350171_e20210992359479_c20210992359545.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C12_G16_s20210992350171_e20210992359484_c20210992359539.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C13_G16_s20210992350171_e20210992359490_c20210992359555.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C14_G16_s20210992350171_e20210992359479_c20210992359547.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C15_G16_s20210992350171_e20210992359484_c20210992359557.nc&#39;,
+ &#39;Output_data/ABI-L1b-RadF/s20210992350171\\OR_ABI-L1b-RadF-M6C16_G16_s20210992350171_e20210992359490_c20210992359542.nc&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Scene<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Scene object named &#39;scn&#39; by providing a list of filenames obtained from &#39;fGRl1b&#39;.</span>
+<span class="c1"># The Scene object is a core part of the Satpy library, which organizes and manages multiple data sources typically from satellite observations.</span>
+<span class="n">scn</span> <span class="o">=</span> <span class="n">Scene</span><span class="p">(</span><span class="n">filenames</span> <span class="o">=</span> <span class="n">sat_files</span><span class="p">)</span>
+
+<span class="c1"># Retrieve the names of all datasets available in the &#39;scn&#39; object, which represent various satellite data channels.</span>
+<span class="c1"># This information is crucial for understanding what types of data are available for analysis, such as different spectral bands and derived products.</span>
+<span class="n">dataset_names</span> <span class="o">=</span> <span class="n">scn</span><span class="o">.</span><span class="n">all_dataset_names</span><span class="p">()</span>
+
+<span class="c1"># Output the list of dataset names. This is useful for educational purposes to show students the variety of data that can be processed</span>
+<span class="c1"># and to select specific datasets for further analysis in practical exercises.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: ici_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: nwcsaf-geo
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\caliop_l2_cloud.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>while constructing a Python object
+cannot find module &#39;satpy.readers.caliop_l2_cloud&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\caliop_l2_cloud.yaml&quot;, line 44, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: amsr2_l2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: vii_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: gpm_imerg
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\generic_image.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>while constructing a Python object
+cannot find module &#39;satpy.readers.generic_image&#39; (No module named &#39;rioxarray&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\generic_image.yaml&quot;, line 19, column 22
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: ahi_l1b_gridded_bin
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\grib.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>while constructing a Python object
+cannot find module &#39;satpy.readers.grib&#39; (No module named &#39;pygrib&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\grib.yaml&quot;, line 21, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\modis_l2.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>while constructing a Python object
+cannot find module &#39;satpy.readers.modis_l2&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\modis_l2.yaml&quot;, line 16, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: safe_sar_l2_ocn
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No filenames found for reader: mtsat2-imager_hrit
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\clavrx.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>while constructing a Python object
+cannot find module &#39;satpy.readers.clavrx&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\clavrx.yaml&quot;, line 15, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mirs
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_edr
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mersi3_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\oci_l2_bgc.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.seadas_l2&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\oci_l2_bgc.yaml&quot;, line 16, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: nucaps
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mws_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: ahi_hsd
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\fci_l2_grib.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.eum_l2_grib&#39; (Missing eccodes-python and/or eccodes C-library installation. Use conda to install eccodes)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\fci_l2_grib.yaml&quot;, line 13, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: olci_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\seadas_l2.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.seadas_l2&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\seadas_l2.yaml&quot;, line 16, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: epic_l1b_h5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: avhrr_l1b_aapp
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: ghi_l1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: meris_nc_sen3
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_compact
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: avhrr_l1b_hrpt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: msi_safe_l2a
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: nwcsaf-pps_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mwi_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: seviri_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: goci2_l2_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: iasi_l2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: jami_hrit
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: slstr_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_edr_active_fires
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\mcd12q1.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.mcd12q1&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\mcd12q1.yaml&quot;, line 14, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\seviri_l2_grib.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.eum_l2_grib&#39; (Missing eccodes-python and/or eccodes C-library installation. Use conda to install eccodes)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\seviri_l2_grib.yaml&quot;, line 17, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: atms_l1b_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: smos_l2_wind
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: hy2_scat_l2b_h5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mersi_ll_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: geocat
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: amsr2_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\seviri_l2_bufr.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.eum_l2_bufr&#39; (Missing eccodes-python and/or eccodes C-library installation. Use conda to install eccodes)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\seviri_l2_bufr.yaml&quot;, line 14, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: vii_l2_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\ascat_l2_soilmoisture_bufr.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.ascat_l2_soilmoisture_bufr&#39; ((&#39;Missing eccodes-python and/or eccodes C-library installation. Use conda to install eccodes.\n           Error: &#39;, ModuleNotFoundError(&quot;No module named &#39;eccodes&#39;&quot;)))
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\ascat_l2_soilmoisture_bufr.yaml&quot;, line 15, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: sgli_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: satpy_cf_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: gld360_ualf2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: gerb_l2_hr_h5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_sdr
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: virr_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\viirs_edr_flood.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.viirs_edr_flood&#39; (No module named &#39;pyhdf&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\viirs_edr_flood.yaml&quot;, line 13, column 22
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: oli_tirs_l1_tif
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: ahi_l2_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: agri_fy4b_l1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: agri_fy4a_l1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: mviri_l1b_fiduceo_nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: glm_l2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: msu_gsa_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\fci_l2_bufr.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.eum_l2_bufr&#39; (Missing eccodes-python and/or eccodes C-library installation. Use conda to install eccodes)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\fci_l2_bufr.yaml&quot;, line 14, column 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: viirs_l2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: fy3c_mersi1_l1b
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: seviri_l1b_hrit
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.readers.yaml_reader:No filenames found for reader: abi_l1b_scmi
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:Problem with [&#39;C:\\Users\\Ismart\\miniconda3\\envs\\cookbook-geosat\\Lib\\site-packages\\satpy\\etc\\readers\\gms5-vissr_l1b.yaml&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:satpy.readers:while constructing a Python object
+cannot find module &#39;satpy.readers.gms.gms5_vissr_l1b&#39; (No module named &#39;numba&#39;)
+  in &quot;C:\Users\Ismart\miniconda3\envs\cookbook-geosat\Lib\site-packages\satpy\etc\readers\gms5-vissr_l1b.yaml&quot;, line 19, column 22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;C01&#39;, &#39;C02&#39;, &#39;C03&#39;, &#39;C04&#39;, &#39;C05&#39;, &#39;C06&#39;, &#39;C07&#39;, &#39;C08&#39;, &#39;C09&#39;, &#39;C10&#39;, &#39;C11&#39;, &#39;C12&#39;, &#39;C13&#39;, &#39;C14&#39;, &#39;C15&#39;, &#39;C16&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;C01&#39;, &#39;C02&#39;, &#39;C03&#39;, &#39;C04&#39;, &#39;C05&#39;, &#39;C06&#39;, &#39;C07&#39;, &#39;C08&#39;, &#39;C09&#39;, &#39;C10&#39;, &#39;C11&#39;, &#39;C12&#39;, &#39;C13&#39;, &#39;C14&#39;, &#39;C15&#39;, &#39;C16&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load multiple datasets using a list comprehension to generate dataset names.</span>
+<span class="c1"># List comprehensions provide a concise way to create lists based on existing lists or ranges.</span>
+<span class="c1"># In this case, we generate names for the datasets &#39;C01&#39; to &#39;C16&#39;, which are typical channel identifiers in satellite data.</span>
+<span class="n">scn</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;C</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">)])</span>
+
+<span class="c1"># Explanation of the list comprehension:</span>
+<span class="c1"># [f&#39;C{x:02d}&#39; for x in range(1, 17)] creates a list of strings from &#39;C01&#39; to &#39;C16&#39;.</span>
+<span class="c1"># &#39;f&#39; before the string starts an f-string, allowing us to insert variables directly into the string.</span>
+<span class="c1"># &#39;{x:02d}&#39; formats the number &#39;x&#39; as a two-digit decimal, padding with zeros if necessary.</span>
+
+<span class="c1"># The &#39;scn.load&#39; function is then used to load these specific datasets into the Scene object.</span>
+<span class="c1"># Loading multiple channels like this is common in the analysis of satellite imagery,</span>
+<span class="c1"># where each channel can represent different spectral bands and contain different types of environmental information.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The method &#39;available_composite_names&#39; is called on the &#39;scn&#39; object.</span>
+<span class="c1"># This method retrieves a list of all the composite images that can be created using the loaded data channels.</span>
+<span class="c1"># Composite images are made by combining multiple data channels to enhance the visualization and interpretation of satellite data.</span>
+<span class="c1"># This feature is particularly useful in the study of geostationary satellites, as it allows for more detailed and informative visual representations of atmospheric phenomena.</span>
+
+<span class="c1"># Retrieve and print the list of available composite names, providing a crucial insight into the data visualization capabilities.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scn</span><span class="o">.</span><span class="n">available_composite_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;24h_microphysics&#39;, &#39;airmass&#39;, &#39;ash&#39;, &#39;cimss_cloud_type&#39;, &#39;cimss_cloud_type_raw&#39;, &#39;cimss_green&#39;, &#39;cimss_green_sunz&#39;, &#39;cimss_green_sunz_rayleigh&#39;, &#39;cimss_true_color&#39;, &#39;cimss_true_color_sunz&#39;, &#39;cimss_true_color_sunz_rayleigh&#39;, &#39;cira_day_convection&#39;, &#39;cira_fire_temperature&#39;, &#39;cloud_phase&#39;, &#39;cloud_phase_distinction&#39;, &#39;cloud_phase_distinction_raw&#39;, &#39;cloud_phase_raw&#39;, &#39;cloudtop&#39;, &#39;color_infrared&#39;, &#39;colorized_ir_clouds&#39;, &#39;convection&#39;, &#39;day_microphysics&#39;, &#39;day_microphysics_abi&#39;, &#39;day_microphysics_eum&#39;, &#39;dust&#39;, &#39;fire_temperature_awips&#39;, &#39;fog&#39;, &#39;geo_color&#39;, &#39;geo_color_background_with_low_clouds&#39;, &#39;geo_color_high_clouds&#39;, &#39;geo_color_low_clouds&#39;, &#39;geo_color_night&#39;, &#39;green&#39;, &#39;green_crefl&#39;, &#39;green_nocorr&#39;, &#39;green_raw&#39;, &#39;green_snow&#39;, &#39;highlight_C14&#39;, &#39;ir108_3d&#39;, &#39;ir_cloud_day&#39;, &#39;land_cloud&#39;, &#39;land_cloud_fire&#39;, &#39;natural_color&#39;, &#39;natural_color_nocorr&#39;, &#39;natural_color_raw&#39;, &#39;natural_color_raw_with_night_ir&#39;, &#39;night_fog&#39;, &#39;night_ir_alpha&#39;, &#39;night_ir_with_background&#39;, &#39;night_ir_with_background_hires&#39;, &#39;night_microphysics&#39;, &#39;night_microphysics_eum&#39;, &#39;overview&#39;, &#39;overview_raw&#39;, &#39;rocket_plume_day&#39;, &#39;rocket_plume_night&#39;, &#39;snow&#39;, &#39;snow_fog&#39;, &#39;so2&#39;, &#39;tropical_airmass&#39;, &#39;true_color&#39;, &#39;true_color_crefl&#39;, &#39;true_color_nocorr&#39;, &#39;true_color_raw&#39;, &#39;true_color_reproduction&#39;, &#39;true_color_reproduction_corr&#39;, &#39;true_color_reproduction_uncorr&#39;, &#39;true_color_with_night_fires&#39;, &#39;true_color_with_night_fires_nocorr&#39;, &#39;true_color_with_night_ir&#39;, &#39;true_color_with_night_ir_hires&#39;, &#39;water_vapors1&#39;, &#39;water_vapors2&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign the dataset name &#39;airmass&#39; to the variable &#39;rgb_im&#39;.</span>
+<span class="c1"># This variable naming provides clarity when referencing the dataset in multiple places, </span>
+<span class="c1"># ensuring consistency and reducing the likelihood of errors in dataset identification.</span>
+<span class="n">rgb_im</span> <span class="o">=</span> <span class="s1">&#39;airmass&#39;</span>
+
+<span class="c1"># Load the dataset named &#39;airmass&#39; using the &#39;scn.load&#39; method.</span>
+<span class="c1"># The &#39;airmass&#39; composite is particularly useful in meteorology as it combines several spectral bands to highlight features like dust, ash, and water vapor,</span>
+<span class="c1"># making it easier to analyze atmospheric conditions from geostationary satellite data.</span>
+<span class="n">scn</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">rgb_im</span><span class="p">])</span>
+
+<span class="c1"># Display the loaded &#39;airmass&#39; dataset using &#39;scn.show&#39;.</span>
+<span class="c1"># This method visualizes the specified dataset, allowing students to see the practical application of satellite data composites </span>
+<span class="c1"># and understand their relevance in real-world atmospheric monitoring and analysis.</span>
+<span class="n">scn</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">rgb_im</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e96aa721044bd343174fd1c19e938a1c693f43c792c08784d22775223f6c2f8b.png" src="../_images/e96aa721044bd343174fd1c19e938a1c693f43c792c08784d22775223f6c2f8b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the dataset named &#39;airmass&#39; from the &#39;scn&#39; object using the previously defined variable &#39;rgb_im&#39;.</span>
+<span class="c1"># The variable &#39;rgb_im&#39; holds the string &#39;airmass&#39;, which acts as a key to retrieve the corresponding dataset from the Scene object.</span>
+<span class="c1"># This operation is critical in satellite data processing as it allows for direct manipulation and analysis of specific datasets.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">scn</span><span class="p">[</span><span class="n">rgb_im</span><span class="p">]</span>
+
+<span class="c1"># The retrieved dataset can then be used for further analysis, visualization, or processing.</span>
+<span class="c1"># It&#39;s important for students to understand how to efficiently access and work with specific datasets within a complex data structure.</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+html[data-theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;where-976025adb9244ce1cd985751a5766b01&#x27; (bands: 3, y: 5424,
+                                                            x: 5424)&gt; Size: 353MB
+dask.array&lt;where, shape=(3, 5424, 5424), dtype=float32, chunksize=(1, 1356, 1356), chunktype=numpy.ndarray&gt;
+Coordinates:
+    crs      object 8B PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;Unknown...
+  * y        (y) float64 43kB 5.434e+06 5.432e+06 ... -5.432e+06 -5.434e+06
+  * x        (x) float64 43kB -5.434e+06 -5.432e+06 ... 5.432e+06 5.434e+06
+  * bands    (bands) &lt;U1 12B &#x27;R&#x27; &#x27;G&#x27; &#x27;B&#x27;
+Attributes: (12/27)
+    reader:                  abi_l1b
+    long_name:               Brightness Temperature
+    end_time:                2021-04-09 23:59:49
+    ancillary_variables:     []
+    grid_mapping:            goes_imager_projection
+    scan_mode:               M6
+    ...                      ...
+    wavelength:              None
+    name:                    airmass
+    _satpy_id:               DataID(name=&#x27;airmass&#x27;, resolution=2000)
+    prerequisites:           [DataQuery(name=&#x27;_airmass_dep_0&#x27;), DataQuery(nam...
+    optional_prerequisites:  []
+    mode:                    RGB</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'where-976025adb9244ce1cd985751a5766b01'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>bands</span>: 3</li><li><span class='xr-has-index'>y</span>: 5424</li><li><span class='xr-has-index'>x</span>: 5424</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-0b327890-3317-41fc-86ed-98c8fab93c2a' class='xr-array-in' type='checkbox' checked><label for='section-0b327890-3317-41fc-86ed-98c8fab93c2a' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1, 1356, 1356), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 336.68 MiB </td>
+                        <td> 7.01 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (3, 5424, 5424) </td>
+                        <td> (1, 1356, 1356) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 48 chunks in 67 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="194" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="90" x2="24" y2="104" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="19" y1="9" x2="139" y2="9" />
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="40" y1="0" x2="54" y2="14" />
+  <line x1="70" y1="0" x2="84" y2="14" />
+  <line x1="100" y1="0" x2="114" y2="14" />
+  <line x1="130" y1="0" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 144.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="44" x2="144" y2="44" />
+  <line x1="24" y1="74" x2="144" y2="74" />
+  <line x1="24" y1="104" x2="144" y2="104" />
+  <line x1="24" y1="134" x2="144" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="54" y1="14" x2="54" y2="134" />
+  <line x1="84" y1="14" x2="84" y2="134" />
+  <line x1="114" y1="14" x2="114" y2="134" />
+  <line x1="144" y1="14" x2="144" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 144.9485979497544,14.948597949754403 144.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="84.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >5424</text>
+  <text x="164.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,164.948598,74.948598)">5424</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">3</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-adf30589-ef10-446c-82ba-041ca5690c3a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-adf30589-ef10-446c-82ba-041ca5690c3a' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>crs</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;u...</div><input id='attrs-cb02fb7d-c65b-4691-b41e-c99982355cb0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-cb02fb7d-c65b-4691-b41e-c99982355cb0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8417daa2-62fb-45e0-8eac-2b06afd7a4e2' class='xr-var-data-in' type='checkbox'><label for='data-8417daa2-62fb-45e0-8eac-2b06afd7a4e2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&lt;Projected CRS: PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;Unk ...&gt;
+Name: unknown
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- undefined
+Coordinate Operation:
+- name: unknown
+- method: Geostationary Satellite (Sweep X)
+Datum: Unknown based on GRS 1980 ellipsoid
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich
+, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.434e+06 5.432e+06 ... -5.434e+06</div><input id='attrs-8ec26aee-9472-473f-8412-73665ce26476' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8ec26aee-9472-473f-8412-73665ce26476' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-171f4219-c6c9-4ee4-abe6-510ae58fd4a7' class='xr-var-data-in' type='checkbox'><label for='data-171f4219-c6c9-4ee4-abe6-510ae58fd4a7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([ 5433892.876412,  5431888.859124,  5429884.841836, ..., -5429884.841836,
+       -5431888.859124, -5433892.876412])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-5.434e+06 -5.432e+06 ... 5.434e+06</div><input id='attrs-301d7564-f9c7-4eec-94ff-27c8e8b04f43' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-301d7564-f9c7-4eec-94ff-27c8e8b04f43' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-70446401-9ad0-4894-9c47-4fd51e04adab' class='xr-var-data-in' type='checkbox'><label for='data-70446401-9ad0-4894-9c47-4fd51e04adab' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([-5433892.876412, -5431888.859124, -5429884.841836, ...,  5429884.841836,
+        5431888.859124,  5433892.876412])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>bands</span></div><div class='xr-var-dims'>(bands)</div><div class='xr-var-dtype'>&lt;U1</div><div class='xr-var-preview xr-preview'>&#x27;R&#x27; &#x27;G&#x27; &#x27;B&#x27;</div><input id='attrs-e2507015-709e-4739-810e-b507a0f0e432' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e2507015-709e-4739-810e-b507a0f0e432' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2c54d4d4-a440-4f83-96be-7e3ab9c86c4e' class='xr-var-data-in' type='checkbox'><label for='data-2c54d4d4-a440-4f83-96be-7e3ab9c86c4e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;R&#x27;, &#x27;G&#x27;, &#x27;B&#x27;], dtype=&#x27;&lt;U1&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-152d0fad-d9c3-4366-b5c3-b09128acff53' class='xr-section-summary-in' type='checkbox'  ><label for='section-152d0fad-d9c3-4366-b5c3-b09128acff53' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6ece713a-f883-4735-966b-319f0de2fb7f' class='xr-index-data-in' type='checkbox'/><label for='index-6ece713a-f883-4735-966b-319f0de2fb7f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([5433892.8764120005,     5431888.859124,  5429884.841836001,
+       5427880.8245480005,      5425876.80726,  5423872.789972001,
+           5421868.772684,     5419864.755396,  5417860.738108001,
+            5415856.72082,
+       ...
+           -5415856.72082,    -5417860.738108, -5419864.755395999,
+          -5421868.772684,    -5423872.789972, -5425876.807259999,
+       -5427880.824547999,    -5429884.841836, -5431888.859123999,
+       -5433892.876411999],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=5424))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-eddc1eec-fe9d-4c28-819e-f16d808202e2' class='xr-index-data-in' type='checkbox'/><label for='index-eddc1eec-fe9d-4c28-819e-f16d808202e2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-5433892.8764120005,     -5431888.859124,  -5429884.841836001,
+       -5427880.8245480005,      -5425876.80726,  -5423872.789972001,
+           -5421868.772684,     -5419864.755396,  -5417860.738108001,
+            -5415856.72082,
+       ...
+             5415856.72082,      5417860.738108,   5419864.755395999,
+            5421868.772684,      5423872.789972,   5425876.807259999,
+         5427880.824547999,      5429884.841836,   5431888.859123999,
+         5433892.876411999],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=5424))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>bands</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-80899b11-7da7-421e-ab09-0ddd7a0e8f67' class='xr-index-data-in' type='checkbox'/><label for='index-80899b11-7da7-421e-ab09-0ddd7a0e8f67' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;R&#x27;, &#x27;G&#x27;, &#x27;B&#x27;], dtype=&#x27;object&#x27;, name=&#x27;bands&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-414624b9-8405-47a3-850e-f40de1913282' class='xr-section-summary-in' type='checkbox'  ><label for='section-414624b9-8405-47a3-850e-f40de1913282' class='xr-section-summary' >Attributes: <span>(27)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>reader :</span></dt><dd>abi_l1b</dd><dt><span>long_name :</span></dt><dd>Brightness Temperature</dd><dt><span>end_time :</span></dt><dd>2021-04-09 23:59:49</dd><dt><span>ancillary_variables :</span></dt><dd>[]</dd><dt><span>grid_mapping :</span></dt><dd>goes_imager_projection</dd><dt><span>scan_mode :</span></dt><dd>M6</dd><dt><span>scene_id :</span></dt><dd>Full Disk</dd><dt><span>platform_name :</span></dt><dd>GOES-16</dd><dt><span>platform_shortname :</span></dt><dd>G16</dd><dt><span>standard_name :</span></dt><dd>airmass</dd><dt><span>resolution :</span></dt><dd>2000</dd><dt><span>cell_methods :</span></dt><dd>t: point area: point</dd><dt><span>sensor :</span></dt><dd>abi</dd><dt><span>area :</span></dt><dd>Area ID: GOES-East
+Description: 2km at nadir
+Projection ID: abi_fixed_grid
+Projection: {&#x27;ellps&#x27;: &#x27;GRS80&#x27;, &#x27;h&#x27;: &#x27;35786023&#x27;, &#x27;lon_0&#x27;: &#x27;-75&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;sweep&#x27;: &#x27;x&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
+Number of columns: 5424
+Number of rows: 5424
+Area extent: (np.float64(-5434894.8851), np.float64(-5434894.8851), np.float64(5434894.8851), np.float64(5434894.8851))</dd><dt><span>production_site :</span></dt><dd>WCDAS</dd><dt><span>orbital_parameters :</span></dt><dd>{&#x27;projection_longitude&#x27;: -75.0, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35786023.0, &#x27;satellite_nominal_latitude&#x27;: 0.0, &#x27;satellite_nominal_longitude&#x27;: -75.19999694824219, &#x27;satellite_nominal_altitude&#x27;: 35786023.4375, &#x27;yaw_flip&#x27;: False}</dd><dt><span>start_time :</span></dt><dd>2021-04-09 23:50:17.100000</dd><dt><span>observation_type :</span></dt><dd>Rad</dd><dt><span>orbital_slot :</span></dt><dd>GOES-East</dd><dt><span>instrument_ID :</span></dt><dd>FM1</dd><dt><span>scene_abbr :</span></dt><dd>F</dd><dt><span>wavelength :</span></dt><dd>None</dd><dt><span>name :</span></dt><dd>airmass</dd><dt><span>_satpy_id :</span></dt><dd>DataID(name=&#x27;airmass&#x27;, resolution=2000)</dd><dt><span>prerequisites :</span></dt><dd>[DataQuery(name=&#x27;_airmass_dep_0&#x27;), DataQuery(name=&#x27;_airmass_dep_1&#x27;), DataQuery(name=&#x27;C08&#x27;)]</dd><dt><span>optional_prerequisites :</span></dt><dd>[]</dd><dt><span>mode :</span></dt><dd>RGB</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the keys (dataset names) available in the &#39;scn&#39; object</span>
+<span class="c1"># This function lists all dataset identifiers stored in the Scene object, each represented as a DataID object.</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">scn</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># The output is a list of DataID objects, each encapsulating the metadata for a different satellite data channel or composite.</span>
+<span class="c1"># These DataIDs include crucial information such as:</span>
+<span class="c1"># - name: The identifier of the dataset, like &#39;C01&#39;, &#39;C02&#39;, ..., &#39;C16&#39;, &#39;airmass&#39;.</span>
+<span class="c1"># - wavelength: A WavelengthRange object indicating the spectral range each channel covers, important for identifying the type of observations (e.g., visible, infrared).</span>
+<span class="c1"># - resolution: The spatial resolution of the data in meters, which affects the detail level visible in the imagery.</span>
+<span class="c1"># - calibration: The type of calibration applied to the data, which could be reflectance or brightness temperature, impacting how the data should be interpreted.</span>
+<span class="c1"># - modifiers: Any additional processing applied to the data channel.</span>
+
+<span class="c1"># Print the keys to show the available datasets and their properties, aiding in understanding the capabilities and focus areas of the satellite instrument.</span>
+<span class="n">keys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataID(name=&#39;C01&#39;, wavelength=WavelengthRange(min=0.45, central=0.47, max=0.49, unit=&#39;µm&#39;), resolution=1000, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C02&#39;, wavelength=WavelengthRange(min=0.59, central=0.64, max=0.69, unit=&#39;µm&#39;), resolution=500, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C03&#39;, wavelength=WavelengthRange(min=0.8455, central=0.865, max=0.8845, unit=&#39;µm&#39;), resolution=1000, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C04&#39;, wavelength=WavelengthRange(min=1.3705, central=1.378, max=1.3855, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C05&#39;, wavelength=WavelengthRange(min=1.58, central=1.61, max=1.64, unit=&#39;µm&#39;), resolution=1000, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C06&#39;, wavelength=WavelengthRange(min=2.225, central=2.25, max=2.275, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;1&gt;, modifiers=()),
+ DataID(name=&#39;C07&#39;, wavelength=WavelengthRange(min=3.8, central=3.9, max=4.0, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C08&#39;, wavelength=WavelengthRange(min=5.77, central=6.185, max=6.6, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C09&#39;, wavelength=WavelengthRange(min=6.75, central=6.95, max=7.15, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C10&#39;, wavelength=WavelengthRange(min=7.24, central=7.34, max=7.44, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C11&#39;, wavelength=WavelengthRange(min=8.3, central=8.5, max=8.7, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C12&#39;, wavelength=WavelengthRange(min=9.42, central=9.61, max=9.8, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C13&#39;, wavelength=WavelengthRange(min=10.1, central=10.35, max=10.6, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C14&#39;, wavelength=WavelengthRange(min=10.8, central=11.2, max=11.6, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C15&#39;, wavelength=WavelengthRange(min=11.8, central=12.3, max=12.8, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;C16&#39;, wavelength=WavelengthRange(min=13.0, central=13.3, max=13.6, unit=&#39;µm&#39;), resolution=2000, calibration=&lt;2&gt;, modifiers=()),
+ DataID(name=&#39;airmass&#39;, resolution=2000)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the area information associated with the &#39;C13&#39; dataset in the &#39;scn&#39; object.</span>
+<span class="c1"># The area property of a dataset within a Scene object provides geographical and geometric details about the satellite data.</span>
+<span class="c1"># This includes information such as the projection, extent, resolution, and size of the dataset, which are crucial for spatial analysis.</span>
+
+<span class="c1"># For the &#39;C13&#39; dataset, which typically represents an infrared channel on geostationary satellites, </span>
+<span class="c1"># understanding its area is essential for accurately interpreting spatial phenomena observed in the imagery, such as cloud formations or surface temperatures.</span>
+<span class="n">area_info</span> <span class="o">=</span> <span class="n">scn</span><span class="p">[</span><span class="s2">&quot;C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># Print the area information to provide insights into the spatial characteristics of the &#39;C13&#39; dataset.</span>
+<span class="c1"># This information supports tasks such as mapping, data integration with other geospatial datasets, and more precise environmental monitoring.</span>
+<span class="n">area_info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+<symbol id="icon-globe" viewBox="0 0 44 44">
+<path d="M22 0a22 22 0 1 0 22 22A22 22 0 0 0 22 0zm-5.94 2.9a14.73 14.73 0 0 0-1.24 1.5l-.11.15a20.82 20.82 0 0 0-2.13 3.83l-.1.24-.1.27a16.43 16.43 0 0 1-3.3-2.14 19.89 19.89 0 0 1 6.98-3.85zM7.64 8.11a18.6 18.6 0 0 0 4.06 2.64l-.08.25a33.62 33.62 0 0 0-1.14 4.87c0 .22-.06.44-.09.66q-.14 1-.23 2c0 .25 0 .5-.06.76 0 .56 0 1.14-.06 1.72H2a19.94 19.94 0 0 1 5.64-12.9zM2 23h8c0 .58 0 1.16.06 1.72 0 .26 0 .51.06.76q.09 1 .23 2c0 .22.06.44.09.66A33.57 33.57 0 0 0 11.62 33l.08.25a18.54 18.54 0 0 0-4.06 2.64A19.94 19.94 0 0 1 2 23zm7 14.25a16.48 16.48 0 0 1 3.31-2.13c0 .09.06.18.1.27l.1.24a20.82 20.82 0 0 0 2.13 3.83l.11.15a14.63 14.63 0 0 0 1.24 1.5 19.91 19.91 0 0 1-6.91-3.86zm12 4.65c-2.78-.55-5.21-3.38-6.85-7.54A22.44 22.44 0 0 1 21 33zM21 31a24.27 24.27 0 0 0-7.5 1.44A35.41 35.41 0 0 1 12 23h9zm0-10h-9a35.41 35.41 0 0 1 1.48-9.49A24.3 24.3 0 0 0 21 13zm0-10a22.44 22.44 0 0 1-6.85-1.32c1.63-4.15 4.07-7 6.85-7.54zm21 10h-8c0-.58 0-1.15-.06-1.72 0-.26 0-.51-.06-.76q-.09-1-.23-2c0-.22-.06-.44-.09-.66A33.62 33.62 0 0 0 32.38 11l-.08-.25a18.6 18.6 0 0 0 4.06-2.64A19.93 19.93 0 0 1 42 21zM35 6.75a16.44 16.44 0 0 1-3.31 2.13c0-.09-.06-.18-.1-.27l-.1-.24a20.79 20.79 0 0 0-2.13-3.83l-.11-.15a14.73 14.73 0 0 0-1.24-1.5 19.9 19.9 0 0 1 6.91 3.86zM23 2.1c2.78.55 5.21 3.38 6.85 7.54A22.44 22.44 0 0 1 23 11zM23 13a24.31 24.31 0 0 0 7.5-1.44A35.45 35.45 0 0 1 32 21h-9zm0 10h9a35.45 35.45 0 0 1-1.48 9.49A24.28 24.28 0 0 0 23 31zm0 18.9V33a22.44 22.44 0 0 1 6.85 1.32c-1.64 4.2-4.07 7.03-6.85 7.58zm4.94-.8a14.63 14.63 0 0 0 1.24-1.5l.11-.15a20.79 20.79 0 0 0 2.13-3.83l.1-.24c0-.09.07-.18.1-.27a16.49 16.49 0 0 1 3.31 2.13 19.91 19.91 0 0 1-6.99 3.86zm8.43-5.21a18.54 18.54 0 0 0-4.06-2.64l.08-.25a33.63 33.63 0 0 0 1.14-4.87c0-.22.06-.44.09-.66q.14-1 .23-2c0-.25 0-.5.06-.76 0-.56 0-1.14.06-1.72h8a19.94 19.94 0 0 1-5.61 12.9z"/>
+</symbol>
+<symbol id="icon-satellite" viewBox="0 0 32 32">
+<path d="M28.431 24.024l-3.65 3.71M24.861 20.454l-3.829 3.77M21.388 16.788L32 27.4l-3.86 3.86-10.612-10.612zM19.555 17.85l-1.158 1.157M14.152 12.447l-1.158 1.157"/><g fill="none" stroke="#000" stroke-width="16">
+<path d="M.645 22.287c.8 5.426 4.1 8.226 9.166 9.166M4.504 22.287c.447 3.1 2.039 4.888 5.307 5.307M7.399 22.287c.46 1.687 1.353 2.232 2.412 2.412" stroke-width="1.30464"/></g>
+<path d="M11.45 18.62l-1.447 3.377 3.377-1.447"/>
+<path d="M15.728 22.661c-.666.666-2.61-.197-4.342-1.93C9.654 19 8.79 17.057 9.456 16.39c.666-.666 2.61.198 4.342 1.93 1.732 1.731 2.596 3.675 1.93 4.341zM16.66 10.709l.876.861.475-.475 2.895 2.894-.483.483.965.964-5.142 5.073-4.74-4.74zM11.644 7.236l-3.74 3.74M8.074 3.666l-3.732 3.71M4.6 0l10.612 10.612-3.86 3.86L.742 3.86z"/>
+ </symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying area definition objects in jupyterlab.
+ *
+ */
+
+:root {
+  --pyresample-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --pyresample-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --pyresample-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --pyresample-border-color: var(--jp-border-color2, #e0e0e0);
+  --pyresample-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --pyresample-background-color: var(--jp-layout-color0, white);
+  --pyresample-background-color-row-even: var(--jp-layout-color1, white);
+  --pyresample-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --pyresample-font-color0: rgba(255, 255, 255, 1);
+  --pyresample-font-color2: rgba(255, 255, 255, 0.54);
+  --pyresample-font-color3: rgba(255, 255, 255, 0.38);
+  --pyresample-border-color: #1F1F1F;
+  --pyresample-disabled-color: #515151;
+  --pyresample-background-color: #111111;
+  --pyresample-background-color-row-even: #111111;
+  --pyresample-background-color-row-odd: #313131;
+}
+
+.pyresample-wrap {
+  display: block !important;
+  min-width: 700px;
+  max-width: 1050px;
+}
+
+.pyresample-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.pyresample-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--pyresample-border-color);
+}
+
+.pyresample-header > div,
+.pyresample-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pyresample-obj-type,
+.pyresample-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.pyresample-obj-type {
+  color: var(--pyresample-font-color2);
+}
+
+.pyresample-area-section-item {
+  display: contents;
+}
+
+.pyresample-area-section-item input {
+  display: none;
+}
+
+.pyresample-area-section-item input:enabled + label {
+  cursor: pointer;
+}
+
+.pyresample-area-section-item-grid {
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.pyresample-area-section-item-grid > label {
+  grid-column: 1;
+}
+
+/* attribute list formatting */
+.pyresample-area-section-details dt {
+  width: 190px;
+  float: left;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.pyresample-area-sections {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.pyresample-area-section-details {
+   padding: 0 25px;
+}
+
+.pyresample-area-section-details,
+.pyresample-area-section-in:checked ~ .pyresample-area-section-preview {
+  display: none;
+}
+
+.pyresample-area-section-in:checked ~ .pyresample-area-section-details,
+.pyresample-area-section-preview {
+  display: inline-block;
+}
+
+.pyresample-icon-satellite,
+.pyresample-icon-globe,
+.pyresample-icon-database,
+.pyresample-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='pyresample-text-repr-fallback'>Area ID: GOES-East
+Description: 2km at nadir
+Projection ID: abi_fixed_grid
+Projection: {&#x27;ellps&#x27;: &#x27;GRS80&#x27;, &#x27;h&#x27;: &#x27;35786023&#x27;, &#x27;lon_0&#x27;: &#x27;-75&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;sweep&#x27;: &#x27;x&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
+Number of columns: 5424
+Number of rows: 5424
+Area extent: (np.float64(-5434894.8851), np.float64(-5434894.8851), np.float64(5434894.8851), np.float64(5434894.8851))</pre><div class='pyresample-wrap' style='display:none'><div class='pyresample-header'><div class='pyresample-obj-type'>pyresample.AreaDefinition</div></div><div class='pyresample-area-sections'><div class='pyresample-area-section-item'><input id='section-f351845a-2ca4-4961-a610-21845fea7c5f' class='pyresample-area-section-in' type='checkbox'  checked><label for='section-f351845a-2ca4-4961-a610-21845fea7c5f'  title='Expand/collapse section'><svg class='icon pyresample-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg> Properties</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'><dl><dt>Area name</dt><dd>GOES-East</dd><dt>Description</dt><dd>2km at nadir</dd><dt>Projection</dt><dd>{'ellps': 'GRS80', 'h': '35786023', 'lon_0': '-75', 'no_defs': 'None', 'proj': 'geos', 'sweep': 'x', 'type': 'crs', 'units': 'm', 'x_0': '0', 'y_0': '0'}</dd><dt>Width/Height</dt><dd>5424/5424 Pixel</dd><dt>Resolution x/y (SSP)</dt><dd>2004.0/2004.0 m</dd><dt>Extent (ll_x, ll_y, ur_x, ur_y)</dt><dd>(-5434894.8851, -5434894.8851, 5434894.8851, 5434894.8851)</dd></dl></div></div><div class='pyresample-area-section-item'><input id='section-3cda54d7-2e5f-4e8b-a5a5-3ada64712d8e' class='pyresample-area-section-in' type='checkbox'  ><label for='section-3cda54d7-2e5f-4e8b-a5a5-3ada64712d8e'  title='Expand/collapse section'><svg class='icon pyresample-icon-globe'><use xlink:href='#icon-globe'></use></svg> Map</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'>Note: If cartopy is installed a display of the area can be seen here</div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the area definition information for the &#39;C01&#39; dataset in the &#39;scn&#39; object.</span>
+<span class="c1"># The &#39;area&#39; property of a dataset provides detailed geographic and geometric information about where the satellite data was collected.</span>
+<span class="c1"># This includes details such as projection type, coordinate reference system, image extent, and pixel resolution.</span>
+
+<span class="c1"># The &#39;C01&#39; channel, which often captures data in a visible light wavelength (approximately 0.47 µm),</span>
+<span class="c1"># provides high-resolution imagery useful for detailed visual inspections of cloud cover, surface features, and atmospheric conditions.</span>
+<span class="n">area_info</span> <span class="o">=</span> <span class="n">scn</span><span class="p">[</span><span class="s2">&quot;C01&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># Print the area information to give insights into the geographic scope and detail level of the &#39;C01&#39; dataset.</span>
+<span class="c1"># This is crucial for applications such as mapping, tracking environmental changes, and integrating satellite data with other geographic information systems (GIS).</span>
+<span class="n">area_info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+<symbol id="icon-globe" viewBox="0 0 44 44">
+<path d="M22 0a22 22 0 1 0 22 22A22 22 0 0 0 22 0zm-5.94 2.9a14.73 14.73 0 0 0-1.24 1.5l-.11.15a20.82 20.82 0 0 0-2.13 3.83l-.1.24-.1.27a16.43 16.43 0 0 1-3.3-2.14 19.89 19.89 0 0 1 6.98-3.85zM7.64 8.11a18.6 18.6 0 0 0 4.06 2.64l-.08.25a33.62 33.62 0 0 0-1.14 4.87c0 .22-.06.44-.09.66q-.14 1-.23 2c0 .25 0 .5-.06.76 0 .56 0 1.14-.06 1.72H2a19.94 19.94 0 0 1 5.64-12.9zM2 23h8c0 .58 0 1.16.06 1.72 0 .26 0 .51.06.76q.09 1 .23 2c0 .22.06.44.09.66A33.57 33.57 0 0 0 11.62 33l.08.25a18.54 18.54 0 0 0-4.06 2.64A19.94 19.94 0 0 1 2 23zm7 14.25a16.48 16.48 0 0 1 3.31-2.13c0 .09.06.18.1.27l.1.24a20.82 20.82 0 0 0 2.13 3.83l.11.15a14.63 14.63 0 0 0 1.24 1.5 19.91 19.91 0 0 1-6.91-3.86zm12 4.65c-2.78-.55-5.21-3.38-6.85-7.54A22.44 22.44 0 0 1 21 33zM21 31a24.27 24.27 0 0 0-7.5 1.44A35.41 35.41 0 0 1 12 23h9zm0-10h-9a35.41 35.41 0 0 1 1.48-9.49A24.3 24.3 0 0 0 21 13zm0-10a22.44 22.44 0 0 1-6.85-1.32c1.63-4.15 4.07-7 6.85-7.54zm21 10h-8c0-.58 0-1.15-.06-1.72 0-.26 0-.51-.06-.76q-.09-1-.23-2c0-.22-.06-.44-.09-.66A33.62 33.62 0 0 0 32.38 11l-.08-.25a18.6 18.6 0 0 0 4.06-2.64A19.93 19.93 0 0 1 42 21zM35 6.75a16.44 16.44 0 0 1-3.31 2.13c0-.09-.06-.18-.1-.27l-.1-.24a20.79 20.79 0 0 0-2.13-3.83l-.11-.15a14.73 14.73 0 0 0-1.24-1.5 19.9 19.9 0 0 1 6.91 3.86zM23 2.1c2.78.55 5.21 3.38 6.85 7.54A22.44 22.44 0 0 1 23 11zM23 13a24.31 24.31 0 0 0 7.5-1.44A35.45 35.45 0 0 1 32 21h-9zm0 10h9a35.45 35.45 0 0 1-1.48 9.49A24.28 24.28 0 0 0 23 31zm0 18.9V33a22.44 22.44 0 0 1 6.85 1.32c-1.64 4.2-4.07 7.03-6.85 7.58zm4.94-.8a14.63 14.63 0 0 0 1.24-1.5l.11-.15a20.79 20.79 0 0 0 2.13-3.83l.1-.24c0-.09.07-.18.1-.27a16.49 16.49 0 0 1 3.31 2.13 19.91 19.91 0 0 1-6.99 3.86zm8.43-5.21a18.54 18.54 0 0 0-4.06-2.64l.08-.25a33.63 33.63 0 0 0 1.14-4.87c0-.22.06-.44.09-.66q.14-1 .23-2c0-.25 0-.5.06-.76 0-.56 0-1.14.06-1.72h8a19.94 19.94 0 0 1-5.61 12.9z"/>
+</symbol>
+<symbol id="icon-satellite" viewBox="0 0 32 32">
+<path d="M28.431 24.024l-3.65 3.71M24.861 20.454l-3.829 3.77M21.388 16.788L32 27.4l-3.86 3.86-10.612-10.612zM19.555 17.85l-1.158 1.157M14.152 12.447l-1.158 1.157"/><g fill="none" stroke="#000" stroke-width="16">
+<path d="M.645 22.287c.8 5.426 4.1 8.226 9.166 9.166M4.504 22.287c.447 3.1 2.039 4.888 5.307 5.307M7.399 22.287c.46 1.687 1.353 2.232 2.412 2.412" stroke-width="1.30464"/></g>
+<path d="M11.45 18.62l-1.447 3.377 3.377-1.447"/>
+<path d="M15.728 22.661c-.666.666-2.61-.197-4.342-1.93C9.654 19 8.79 17.057 9.456 16.39c.666-.666 2.61.198 4.342 1.93 1.732 1.731 2.596 3.675 1.93 4.341zM16.66 10.709l.876.861.475-.475 2.895 2.894-.483.483.965.964-5.142 5.073-4.74-4.74zM11.644 7.236l-3.74 3.74M8.074 3.666l-3.732 3.71M4.6 0l10.612 10.612-3.86 3.86L.742 3.86z"/>
+ </symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying area definition objects in jupyterlab.
+ *
+ */
+
+:root {
+  --pyresample-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --pyresample-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --pyresample-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --pyresample-border-color: var(--jp-border-color2, #e0e0e0);
+  --pyresample-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --pyresample-background-color: var(--jp-layout-color0, white);
+  --pyresample-background-color-row-even: var(--jp-layout-color1, white);
+  --pyresample-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --pyresample-font-color0: rgba(255, 255, 255, 1);
+  --pyresample-font-color2: rgba(255, 255, 255, 0.54);
+  --pyresample-font-color3: rgba(255, 255, 255, 0.38);
+  --pyresample-border-color: #1F1F1F;
+  --pyresample-disabled-color: #515151;
+  --pyresample-background-color: #111111;
+  --pyresample-background-color-row-even: #111111;
+  --pyresample-background-color-row-odd: #313131;
+}
+
+.pyresample-wrap {
+  display: block !important;
+  min-width: 700px;
+  max-width: 1050px;
+}
+
+.pyresample-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.pyresample-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--pyresample-border-color);
+}
+
+.pyresample-header > div,
+.pyresample-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pyresample-obj-type,
+.pyresample-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.pyresample-obj-type {
+  color: var(--pyresample-font-color2);
+}
+
+.pyresample-area-section-item {
+  display: contents;
+}
+
+.pyresample-area-section-item input {
+  display: none;
+}
+
+.pyresample-area-section-item input:enabled + label {
+  cursor: pointer;
+}
+
+.pyresample-area-section-item-grid {
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.pyresample-area-section-item-grid > label {
+  grid-column: 1;
+}
+
+/* attribute list formatting */
+.pyresample-area-section-details dt {
+  width: 190px;
+  float: left;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.pyresample-area-sections {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.pyresample-area-section-details {
+   padding: 0 25px;
+}
+
+.pyresample-area-section-details,
+.pyresample-area-section-in:checked ~ .pyresample-area-section-preview {
+  display: none;
+}
+
+.pyresample-area-section-in:checked ~ .pyresample-area-section-details,
+.pyresample-area-section-preview {
+  display: inline-block;
+}
+
+.pyresample-icon-satellite,
+.pyresample-icon-globe,
+.pyresample-icon-database,
+.pyresample-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='pyresample-text-repr-fallback'>Area ID: GOES-East
+Description: 1km at nadir
+Projection ID: abi_fixed_grid
+Projection: {&#x27;ellps&#x27;: &#x27;GRS80&#x27;, &#x27;h&#x27;: &#x27;35786023&#x27;, &#x27;lon_0&#x27;: &#x27;-75&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;sweep&#x27;: &#x27;x&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
+Number of columns: 10848
+Number of rows: 10848
+Area extent: (np.float64(-5434894.8851), np.float64(-5434894.8851), np.float64(5434894.8851), np.float64(5434894.8851))</pre><div class='pyresample-wrap' style='display:none'><div class='pyresample-header'><div class='pyresample-obj-type'>pyresample.AreaDefinition</div></div><div class='pyresample-area-sections'><div class='pyresample-area-section-item'><input id='section-ebeea261-b606-43d1-a36a-292c7088847c' class='pyresample-area-section-in' type='checkbox'  checked><label for='section-ebeea261-b606-43d1-a36a-292c7088847c'  title='Expand/collapse section'><svg class='icon pyresample-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg> Properties</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'><dl><dt>Area name</dt><dd>GOES-East</dd><dt>Description</dt><dd>1km at nadir</dd><dt>Projection</dt><dd>{'ellps': 'GRS80', 'h': '35786023', 'lon_0': '-75', 'no_defs': 'None', 'proj': 'geos', 'sweep': 'x', 'type': 'crs', 'units': 'm', 'x_0': '0', 'y_0': '0'}</dd><dt>Width/Height</dt><dd>10848/10848 Pixel</dd><dt>Resolution x/y (SSP)</dt><dd>1002.0/1002.0 m</dd><dt>Extent (ll_x, ll_y, ur_x, ur_y)</dt><dd>(-5434894.8851, -5434894.8851, 5434894.8851, 5434894.8851)</dd></dl></div></div><div class='pyresample-area-section-item'><input id='section-9678de3d-b4c6-45af-a8be-a8e085937522' class='pyresample-area-section-in' type='checkbox'  ><label for='section-9678de3d-b4c6-45af-a8be-a8e085937522'  title='Expand/collapse section'><svg class='icon pyresample-icon-globe'><use xlink:href='#icon-globe'></use></svg> Map</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'>Note: If cartopy is installed a display of the area can be seen here</div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the area definition information for the &#39;C02&#39; dataset in the &#39;scn&#39; object.</span>
+<span class="c1"># The &#39;area&#39; property of a dataset provides crucial geographic and geometric information about the data&#39;s capture region.</span>
+<span class="c1"># This includes the projection type, coordinate system, extent of the image, and pixel resolution.</span>
+
+<span class="c1"># The &#39;C02&#39; channel is typically in the visible spectrum (centered around 0.64 µm), offering detailed imagery suitable for analyzing surface features,</span>
+<span class="c1"># cloud formations, and atmospheric phenomena. This channel is instrumental in meteorological analysis and environmental monitoring.</span>
+<span class="n">area_info</span> <span class="o">=</span> <span class="n">scn</span><span class="p">[</span><span class="s2">&quot;C02&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># Print the area information to provide insights into the geographic scope and resolution of the &#39;C02&#39; dataset.</span>
+<span class="c1"># Understanding this information is vital for accurate mapping, environmental monitoring, and integration with other geospatial data sources.</span>
+<span class="n">area_info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+<symbol id="icon-globe" viewBox="0 0 44 44">
+<path d="M22 0a22 22 0 1 0 22 22A22 22 0 0 0 22 0zm-5.94 2.9a14.73 14.73 0 0 0-1.24 1.5l-.11.15a20.82 20.82 0 0 0-2.13 3.83l-.1.24-.1.27a16.43 16.43 0 0 1-3.3-2.14 19.89 19.89 0 0 1 6.98-3.85zM7.64 8.11a18.6 18.6 0 0 0 4.06 2.64l-.08.25a33.62 33.62 0 0 0-1.14 4.87c0 .22-.06.44-.09.66q-.14 1-.23 2c0 .25 0 .5-.06.76 0 .56 0 1.14-.06 1.72H2a19.94 19.94 0 0 1 5.64-12.9zM2 23h8c0 .58 0 1.16.06 1.72 0 .26 0 .51.06.76q.09 1 .23 2c0 .22.06.44.09.66A33.57 33.57 0 0 0 11.62 33l.08.25a18.54 18.54 0 0 0-4.06 2.64A19.94 19.94 0 0 1 2 23zm7 14.25a16.48 16.48 0 0 1 3.31-2.13c0 .09.06.18.1.27l.1.24a20.82 20.82 0 0 0 2.13 3.83l.11.15a14.63 14.63 0 0 0 1.24 1.5 19.91 19.91 0 0 1-6.91-3.86zm12 4.65c-2.78-.55-5.21-3.38-6.85-7.54A22.44 22.44 0 0 1 21 33zM21 31a24.27 24.27 0 0 0-7.5 1.44A35.41 35.41 0 0 1 12 23h9zm0-10h-9a35.41 35.41 0 0 1 1.48-9.49A24.3 24.3 0 0 0 21 13zm0-10a22.44 22.44 0 0 1-6.85-1.32c1.63-4.15 4.07-7 6.85-7.54zm21 10h-8c0-.58 0-1.15-.06-1.72 0-.26 0-.51-.06-.76q-.09-1-.23-2c0-.22-.06-.44-.09-.66A33.62 33.62 0 0 0 32.38 11l-.08-.25a18.6 18.6 0 0 0 4.06-2.64A19.93 19.93 0 0 1 42 21zM35 6.75a16.44 16.44 0 0 1-3.31 2.13c0-.09-.06-.18-.1-.27l-.1-.24a20.79 20.79 0 0 0-2.13-3.83l-.11-.15a14.73 14.73 0 0 0-1.24-1.5 19.9 19.9 0 0 1 6.91 3.86zM23 2.1c2.78.55 5.21 3.38 6.85 7.54A22.44 22.44 0 0 1 23 11zM23 13a24.31 24.31 0 0 0 7.5-1.44A35.45 35.45 0 0 1 32 21h-9zm0 10h9a35.45 35.45 0 0 1-1.48 9.49A24.28 24.28 0 0 0 23 31zm0 18.9V33a22.44 22.44 0 0 1 6.85 1.32c-1.64 4.2-4.07 7.03-6.85 7.58zm4.94-.8a14.63 14.63 0 0 0 1.24-1.5l.11-.15a20.79 20.79 0 0 0 2.13-3.83l.1-.24c0-.09.07-.18.1-.27a16.49 16.49 0 0 1 3.31 2.13 19.91 19.91 0 0 1-6.99 3.86zm8.43-5.21a18.54 18.54 0 0 0-4.06-2.64l.08-.25a33.63 33.63 0 0 0 1.14-4.87c0-.22.06-.44.09-.66q.14-1 .23-2c0-.25 0-.5.06-.76 0-.56 0-1.14.06-1.72h8a19.94 19.94 0 0 1-5.61 12.9z"/>
+</symbol>
+<symbol id="icon-satellite" viewBox="0 0 32 32">
+<path d="M28.431 24.024l-3.65 3.71M24.861 20.454l-3.829 3.77M21.388 16.788L32 27.4l-3.86 3.86-10.612-10.612zM19.555 17.85l-1.158 1.157M14.152 12.447l-1.158 1.157"/><g fill="none" stroke="#000" stroke-width="16">
+<path d="M.645 22.287c.8 5.426 4.1 8.226 9.166 9.166M4.504 22.287c.447 3.1 2.039 4.888 5.307 5.307M7.399 22.287c.46 1.687 1.353 2.232 2.412 2.412" stroke-width="1.30464"/></g>
+<path d="M11.45 18.62l-1.447 3.377 3.377-1.447"/>
+<path d="M15.728 22.661c-.666.666-2.61-.197-4.342-1.93C9.654 19 8.79 17.057 9.456 16.39c.666-.666 2.61.198 4.342 1.93 1.732 1.731 2.596 3.675 1.93 4.341zM16.66 10.709l.876.861.475-.475 2.895 2.894-.483.483.965.964-5.142 5.073-4.74-4.74zM11.644 7.236l-3.74 3.74M8.074 3.666l-3.732 3.71M4.6 0l10.612 10.612-3.86 3.86L.742 3.86z"/>
+ </symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying area definition objects in jupyterlab.
+ *
+ */
+
+:root {
+  --pyresample-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --pyresample-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --pyresample-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --pyresample-border-color: var(--jp-border-color2, #e0e0e0);
+  --pyresample-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --pyresample-background-color: var(--jp-layout-color0, white);
+  --pyresample-background-color-row-even: var(--jp-layout-color1, white);
+  --pyresample-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --pyresample-font-color0: rgba(255, 255, 255, 1);
+  --pyresample-font-color2: rgba(255, 255, 255, 0.54);
+  --pyresample-font-color3: rgba(255, 255, 255, 0.38);
+  --pyresample-border-color: #1F1F1F;
+  --pyresample-disabled-color: #515151;
+  --pyresample-background-color: #111111;
+  --pyresample-background-color-row-even: #111111;
+  --pyresample-background-color-row-odd: #313131;
+}
+
+.pyresample-wrap {
+  display: block !important;
+  min-width: 700px;
+  max-width: 1050px;
+}
+
+.pyresample-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.pyresample-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--pyresample-border-color);
+}
+
+.pyresample-header > div,
+.pyresample-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pyresample-obj-type,
+.pyresample-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.pyresample-obj-type {
+  color: var(--pyresample-font-color2);
+}
+
+.pyresample-area-section-item {
+  display: contents;
+}
+
+.pyresample-area-section-item input {
+  display: none;
+}
+
+.pyresample-area-section-item input:enabled + label {
+  cursor: pointer;
+}
+
+.pyresample-area-section-item-grid {
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.pyresample-area-section-item-grid > label {
+  grid-column: 1;
+}
+
+/* attribute list formatting */
+.pyresample-area-section-details dt {
+  width: 190px;
+  float: left;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.pyresample-area-sections {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.pyresample-area-section-details {
+   padding: 0 25px;
+}
+
+.pyresample-area-section-details,
+.pyresample-area-section-in:checked ~ .pyresample-area-section-preview {
+  display: none;
+}
+
+.pyresample-area-section-in:checked ~ .pyresample-area-section-details,
+.pyresample-area-section-preview {
+  display: inline-block;
+}
+
+.pyresample-icon-satellite,
+.pyresample-icon-globe,
+.pyresample-icon-database,
+.pyresample-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='pyresample-text-repr-fallback'>Area ID: GOES-East
+Description: 0.5km at nadir
+Projection ID: abi_fixed_grid
+Projection: {&#x27;ellps&#x27;: &#x27;GRS80&#x27;, &#x27;h&#x27;: &#x27;35786023&#x27;, &#x27;lon_0&#x27;: &#x27;-75&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;sweep&#x27;: &#x27;x&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
+Number of columns: 21696
+Number of rows: 21696
+Area extent: (np.float64(-5434894.8851), np.float64(-5434894.8851), np.float64(5434894.8851), np.float64(5434894.8851))</pre><div class='pyresample-wrap' style='display:none'><div class='pyresample-header'><div class='pyresample-obj-type'>pyresample.AreaDefinition</div></div><div class='pyresample-area-sections'><div class='pyresample-area-section-item'><input id='section-6ffcb5ae-528e-49a1-9dbd-99f10b5b5454' class='pyresample-area-section-in' type='checkbox'  checked><label for='section-6ffcb5ae-528e-49a1-9dbd-99f10b5b5454'  title='Expand/collapse section'><svg class='icon pyresample-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg> Properties</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'><dl><dt>Area name</dt><dd>GOES-East</dd><dt>Description</dt><dd>0.5km at nadir</dd><dt>Projection</dt><dd>{'ellps': 'GRS80', 'h': '35786023', 'lon_0': '-75', 'no_defs': 'None', 'proj': 'geos', 'sweep': 'x', 'type': 'crs', 'units': 'm', 'x_0': '0', 'y_0': '0'}</dd><dt>Width/Height</dt><dd>21696/21696 Pixel</dd><dt>Resolution x/y (SSP)</dt><dd>501.0/501.0 m</dd><dt>Extent (ll_x, ll_y, ur_x, ur_y)</dt><dd>(-5434894.8851, -5434894.8851, 5434894.8851, 5434894.8851)</dd></dl></div></div><div class='pyresample-area-section-item'><input id='section-a1214da1-c597-490e-9e93-e9398c4b4099' class='pyresample-area-section-in' type='checkbox'  ><label for='section-a1214da1-c597-490e-9e93-e9398c4b4099'  title='Expand/collapse section'><svg class='icon pyresample-icon-globe'><use xlink:href='#icon-globe'></use></svg> Map</label><div class='pyresample-area-section-preview'></div><div class='pyresample-area-section-details'>Note: If cartopy is installed a display of the area can be seen here</div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the &quot;natural_color&quot; dataset using the &#39;scn.load&#39; method.</span>
+<span class="c1"># The &quot;natural_color&quot; composite is a popular visual representation that combines multiple spectral bands</span>
+<span class="c1"># to produce an image that approximates what the human eye would see from space. </span>
+<span class="c1"># This is particularly useful in earth observation for visualizing land cover, water bodies, and other natural features.</span>
+
+<span class="c1"># The composite typically leverages red, green, and blue spectral bands to enhance the clarity and detail of the image,</span>
+<span class="c1"># which makes it ideal for presentations, educational purposes, and initial visual assessments in environmental studies.</span>
+<span class="n">scn</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s2">&quot;natural_color&quot;</span><span class="p">])</span>
+
+<span class="c1"># This step is crucial for subsequent visualization and analysis tasks, as it prepares the data for easy interpretation and application.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:satpy.scene:The following datasets were not created and may require resampling to be generated: DataID(name=&#39;natural_color&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the area definition of the &quot;C13&quot; dataset from the &#39;scn&#39; object.</span>
+<span class="c1"># The &#39;area&#39; property contains critical geographic and geometric information, including projection, extent, and resolution,</span>
+<span class="c1"># which is essential for accurate geographic referencing in satellite imagery analysis.</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">scn</span><span class="p">[</span><span class="s2">&quot;C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># Resample the scene to the specified area definition.</span>
+<span class="c1"># Resampling is a critical process in satellite data handling, allowing datasets to be standardized to a common spatial grid.</span>
+<span class="c1"># This standardization is necessary for accurate comparison and integration of different data types and sources.</span>
+
+<span class="c1"># Here, &#39;scn.resample(rs)&#39; adjusts all data in the scene to match the area definition of the &#39;C13&#39; dataset.</span>
+<span class="c1"># This is particularly useful when preparing data for detailed analysis or visualization,</span>
+<span class="c1"># ensuring consistency across different datasets within the same scene.</span>
+<span class="n">lscn</span> <span class="o">=</span> <span class="n">scn</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
+
+<span class="c1"># The resulting &#39;lscn&#39; is a new Scene object containing all the original data,</span>
+<span class="c1"># but now aligned to the same geographic grid as the &#39;C13&#39; dataset.</span>
+<span class="c1"># This uniformity is crucial for subsequent processing steps, such as creating composites or conducting multi-temporal analysis.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:satpy.resample:Using default KDTree resampler
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:satpy.resample:Using default KDTree resampler
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:satpy.resample:Using default KDTree resampler
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the &quot;natural_color&quot; dataset for the resampled scene.</span>
+<span class="c1"># The &#39;natural_color&#39; composite is designed to mimic the colors visible to the human eye by combining specific spectral bands.</span>
+<span class="c1"># Loading this dataset into the resampled scene (&#39;lscn&#39;) ensures that the data is properly aligned and standardized across the same geographic area.</span>
+
+<span class="n">lscn</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s2">&quot;natural_color&quot;</span><span class="p">])</span>
+
+<span class="c1"># Display the &quot;natural_color&quot; dataset.</span>
+<span class="c1"># This step involves visualizing the loaded dataset using the &#39;show&#39; method, which renders the satellite image according to the data&#39;s true or natural color representation.</span>
+<span class="c1"># Visualizing data in this way is particularly useful for presentations and educational purposes, providing a realistic view of earth&#39;s features such as vegetation, water bodies, and urban areas.</span>
+
+<span class="n">lscn</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;natural_color&quot;</span><span class="p">)</span>
+
+<span class="c1"># This visualization step is crucial for analyzing environmental and atmospheric conditions,</span>
+<span class="c1"># as it allows observers to easily identify and assess visible features without the need for specialized image interpretation skills.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0f12d16aba074a7142bb0c6282904e809420c47d8f4825d29176a5a37a4b5df2.png" src="../_images/0f12d16aba074a7142bb0c6282904e809420c47d8f4825d29176a5a37a4b5df2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crop the resampled scene (lscn) to a specific geographic region defined by latitude and longitude bounds.</span>
+<span class="c1"># The bounds are given as a tuple in the format (lon_min, lat_min, lon_max, lat_max).</span>
+<span class="c1"># This operation is useful for focusing the analysis on a particular area of interest, reducing data volume and enhancing processing efficiency.</span>
+<span class="n">scn_c1</span> <span class="o">=</span> <span class="n">lscn</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">ll_bbox</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">65.7</span><span class="p">,</span> <span class="mf">10.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">55.9</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">))</span>
+
+<span class="c1"># Display the &quot;C13&quot; dataset from the cropped scene (scn_c1).</span>
+<span class="c1"># The &quot;C13&quot; channel typically represents an infrared wavelength used for observing cloud structure and surface temperature,</span>
+<span class="c1"># crucial for meteorological studies and weather forecasting.</span>
+<span class="c1"># Displaying this dataset allows for detailed observation of atmospheric conditions within the specified geographic area.</span>
+<span class="n">scn_c1</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;C13&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualizing specific channels like &quot;C13&quot; in defined geographic regions helps in targeted analysis,</span>
+<span class="c1"># such as monitoring storm development or evaluating climate patterns in detail.</span>
+<span class="c1"># This capability is particularly valuable in educational settings for demonstrating real-world applications of satellite data analysis.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f7fb6c07a868358bdabb0a5d0d1cf1eb6b192bda6839bfe0606706f0c62b8b19.png" src="../_images/f7fb6c07a868358bdabb0a5d0d1cf1eb6b192bda6839bfe0606706f0c62b8b19.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the &quot;ash&quot; dataset from the cropped scene (scn_c1).</span>
+<span class="c1"># The &quot;ash&quot; composite is specifically designed to detect and visualize volcanic ash in the atmosphere using satellite data.</span>
+<span class="c1"># This dataset is crucial for monitoring volcanic activity and assessing the distribution and movement of ash clouds,</span>
+<span class="c1"># which can have significant impacts on air quality and aviation safety.</span>
+<span class="n">scn_c1</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s1">&#39;ash&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the &quot;ash&quot; dataset from the cropped scene (scn_c1).</span>
+<span class="c1"># Displaying this dataset allows for visual assessment of ash presence within the specified geographic area.</span>
+<span class="c1"># The visualization is particularly useful in educational and operational settings for demonstrating how satellite data can be applied to real-world environmental challenges.</span>
+<span class="n">scn_c1</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s1">&#39;ash&#39;</span><span class="p">)</span>
+
+<span class="c1"># This step not only aids in the educational demonstration of satellite capabilities but also provides practical insights into the management of natural disasters.</span>
+<span class="c1"># Such visualizations are essential tools in emergency response planning and environmental monitoring.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/80e6992dfb9aa27164a8aad7830cfa9a423f39e540b940a66a2997c56b5ef7ef.png" src="../_images/80e6992dfb9aa27164a8aad7830cfa9a423f39e540b940a66a2997c56b5ef7ef.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the &quot;so2&quot; dataset from the cropped scene (scn_c1).</span>
+<span class="c1"># The &quot;so2&quot; dataset is designed to detect sulfur dioxide (SO2) concentrations in the atmosphere using satellite data.</span>
+<span class="c1"># SO2 is a significant volcanic gas and industrial pollutant, making this dataset crucial for monitoring air quality and volcanic activity.</span>
+<span class="n">scn_c1</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s1">&#39;so2&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the &quot;so2&quot; dataset from the cropped scene (scn_c1).</span>
+<span class="c1"># Displaying this dataset allows for a visual assessment of SO2 distribution within the specified geographic area.</span>
+<span class="c1"># The visualization helps in understanding the spatial extent and concentration of sulfur dioxide, which is essential for both environmental and public health assessments.</span>
+<span class="n">scn_c1</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s1">&#39;so2&#39;</span><span class="p">)</span>
+
+<span class="c1"># This step not only aids in the educational demonstration of how satellite imagery can be utilized to monitor environmental pollutants but also provides practical insights into the management of air quality.</span>
+<span class="c1"># Such visualizations are valuable tools for researchers, policymakers, and educators in understanding and addressing atmospheric pollution.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21f12ad04e2db8ebf876ec97f38fbec7518dcfe6b21f1ed97aebd7a071b58d31.png" src="../_images/21f12ad04e2db8ebf876ec97f38fbec7518dcfe6b21f1ed97aebd7a071b58d31.png" />
+</div>
+</div>
+<section id="a-content-subsection">
+<h3>A content subsection<a class="headerlink" href="#a-content-subsection" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Divide and conquer your objectives with Markdown subsections, which will populate the helpful navbar in Jupyter Lab and here on the Jupyter Book!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some subsection code</span>
+<span class="n">new</span> <span class="o">=</span> <span class="s2">&quot;helpful information&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="another-content-subsection">
+<h3>Another content subsection<a class="headerlink" href="#another-content-subsection" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Keep up the good work! A note, <em>try to avoid using code comments as narrative</em>, and instead let them only exist as brief clarifications where necessary.</p>
+</section>
+</section>
+<section id="your-second-content-section">
+<h2>Your second content section<a class="headerlink" href="#your-second-content-section" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Here we can move on to our second objective, and we can demonstrate</p>
+<section id="subsection-to-the-second-section">
+<h3>Subsection to the second section<a class="headerlink" href="#subsection-to-the-second-section" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<section id="a-quick-demonstration">
+<h4>a quick demonstration<a class="headerlink" href="#a-quick-demonstration" title="Link to this heading"><i class="fas fa-link"></i></a></h4>
+<section id="of-further-and-further">
+<h5>of further and further<a class="headerlink" href="#of-further-and-further" title="Link to this heading"><i class="fas fa-link"></i></a></h5>
+<section id="header-levels">
+<h6>header levels<a class="headerlink" href="#header-levels" title="Link to this heading"><i class="fas fa-link"></i></a></h6>
+<p>as well <span class="math notranslate nohighlight">\(m = a * t / h\)</span> text! Similarly, you have access to other <span class="math notranslate nohighlight">\(\LaTeX\)</span> equation <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Typesetting%20Equations.html"><strong>functionality</strong></a> via MathJax (demo below from link),</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7a0fa542-5745-4083-b924-fee61ad49601">
+<span class="eqno">()<a class="headerlink" href="#equation-7a0fa542-5745-4083-b924-fee61ad49601" title="Permalink to this equation"><i class="fas fa-link"></i></a></span>\[\begin{align}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{align}\]</div>
+<p>Check out <a class="reference external" href="https://www.markdownguide.org/basic-syntax/"><strong>any number of helpful Markdown resources</strong></a> for further customizing your notebooks and the <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html"><strong>Jupyter docs</strong></a> for Jupyter-specific formatting information. Don’t hesitate to ask questions if you have problems getting it to look <em>just right</em>.</p>
+</section>
+</section>
+</section>
+</section>
+</section>
+<section id="last-section">
+<h2>Last Section<a class="headerlink" href="#last-section" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>If you’re comfortable, and as we briefly used for our embedded logo up top, you can embed raw html into Jupyter Markdown cells (edit to see):</p>
+<blockquote>
+<div><p>[!NOTE]<br />
+Highlights information that users should take into account, even when skimming.</p>
+</div></blockquote>
+<blockquote>
+<div><p>[!TIP]
+Optional information to help a user be more successful.</p>
+</div></blockquote>
+<blockquote>
+<div><p>[!IMPORTANT]<br />
+Crucial information necessary for users to succeed.</p>
+</div></blockquote>
+<blockquote>
+<div><p>[!WARNING]<br />
+Critical content demanding immediate user attention due to potential risks.</p>
+</div></blockquote>
+<blockquote>
+<div><p>[!CAUTION]
+Negative potential consequences of an action.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should note that the title will be automatically capitalized.</p>
+</div>
+<div class="admonition alert alert-info">
+<p class="admonition-title">Info</p>
+<p>Your relevant information here!</p>
+</div>
+<p>Feel free to copy this around and edit or play around with yourself. Some other <code class="docutils literal notranslate"><span class="pre">admonitions</span></code> you can put in:</p>
+<div class="admonition alert alert-success">
+<p class="admonition-title">Success</p>
+<p>We got this done after all!</p>
+</div>
+<div class="admonition alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful!</p>
+</div>
+<div class="admonition alert alert-danger">
+<p class="admonition-title">Danger</p>
+<p>Scary stuff be here.</p>
+</div>
+<p>We also suggest checking out Jupyter Book’s <a class="reference external" href="https://jupyterbook.org/content/metadata.html#jupyter-cell-tags">brief demonstration</a> on adding cell tags to your cells in Jupyter Notebook, Lab, or manually. Using these cell tags can allow you to <a class="reference external" href="https://jupyterbook.org/interactive/hiding.html">customize</a> how your code content is displayed and even <a class="reference external" href="https://jupyterbook.org/content/execute.html#dealing-with-code-that-raises-errors">demonstrate errors</a> without altogether crashing our loyal army of machines!</p>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Add one final <code class="docutils literal notranslate"><span class="pre">---</span></code> marking the end of your body of content, and then conclude with a brief single paragraph summarizing at a high level the key pieces that were learned and how they tied to your objectives. Look to reiterate what the most important takeaways were.</p>
+<section id="whats-next">
+<h3>What’s next?<a class="headerlink" href="#whats-next" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Let Jupyter book tie this to the next (sequential) piece of content that people could move on to down below and in the sidebar. However, if this page uniquely enables your reader to tackle other nonsequential concepts throughout this book, or even external content, link to it here!</p>
+</section>
+</section>
+<section id="resources-and-references">
+<h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Finally, be rigorous in your citations and references as necessary. Give credit where credit is due. Also, feel free to link to relevant external material, further reading, documentation, etc. Then you’re done! Give yourself a quick review, a high five, and send us a pull request. A few final notes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> to confirm that your notebook will cleanly run from start to finish</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs...</span></code> before committing your notebook, our machines will do the heavy lifting</p></li>
+<li><p>Take credit! Provide author contact information if you’d like; if so, consider adding information here at the bottom of your notebook</p></li>
+<li><p>Give credit! Attribute appropriate authorship for referenced code, information, images, etc.</p></li>
+<li><p>Only include what you’re legally allowed: <strong>no copyright infringement or plagiarism</strong></p></li>
+</ul>
+<p>Thank you for your contribution!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+</div>
+                  </footer>
+                
+              </div>
+
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-to-create-satpy-scenes">Starting to create satpy scenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-content-subsection">A content subsection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-content-subsection">Another content subsection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-second-content-section">Your second content section</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subsection-to-the-second-section">Subsection to the second section</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-demonstration">a quick demonstration</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#of-further-and-further">of further and further</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#header-levels">header levels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-section">Last Section</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s next?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-and-references">Resources and references</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-geosat/main?urlpath=lab/tree/notebooks/01_geosat_GOESR.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/edit/main/notebooks/01_geosat_GOESR.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythia/cookbook-geosat/issues/new?title=Issue%20on%20page%20%2Fnotebooks/01_geosat_GOESR.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/01_geosat_GOESR.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the <a href="https://projectpythia.org/">Project Pythia</a> Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 16 November 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
+  <div class="container-fluid footer-logos">
+    <div class="container-xl">
+      <div class="row d-flex flex-wrap align-items-center">
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="NCAR" src="../_images\NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="Unidata" src="../_images\Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../_images\UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
+    <div class="container-xl">
+      <div class="d-flex justify-content-center">
+        <p class="py-1 m-0">
+            &copy;&nbsp;2024.
+        
+          By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
+        
+          Last updated on 16 November 2024.
+        </p>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item"><div class="container-fluid footer-extra">
+  <div class="container">
+    <center>
+      Theme by <a href="https://projectpythia.org">Project Pythia</a>. All code
+      in Pythia Cookbooks is licensed under
+      <a href="https://opensource.org/license/apache-2-0">Apache 2.0</a>. All
+      other non-code content is licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/">
+        Creative Commons BY 4.0 (CC BY 4.0)</a
+      >.
+    </center>
+    <br /><br />
+    <div class="row">
+      <p class="m-0">
+        <img
+          src="../_static/footer-logo-nsf.png"
+          style="float: left; width: 60px; height: 60px; margin-right: 1rem"
+        />
+        This material is based upon work supported by the National Science
+        Foundation under Grant Nos. 2026863 and 2026899. Any opinions, findings,
+        and conclusions or recommendations expressed in this material are those
+        of the author(s) and do not necessarily reflect the views of the
+        National Science Foundation.
+      </p>
+    </div>
+  </div>
+</div></div>
+      
+      </div>
+    </div>
+  
+
+  </footer>
+  </body>
+</html>
